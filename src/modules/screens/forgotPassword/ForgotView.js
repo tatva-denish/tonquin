@@ -144,7 +144,7 @@ class ForgotView extends Component {
                     style={styles.textInput}
                     autoCapitalize='none'
                     onChangeText={usertext => this.setState({usertext})}
-                    placeholder='Email Address'
+                    placeholder='Email or Phone number'
                     returnKeyType='go'
                     underlineColorAndroid='#D3D3D3'
                   />
