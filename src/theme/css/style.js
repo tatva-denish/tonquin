@@ -1,6 +1,6 @@
 const React = require('react-native');
 import {colors, Fonts} from './common';
-import * as commonFunctions from '../js/CommonFunctions';
+// import * as commonFunctions from '../js/CommonFunctions';
 const {StyleSheet} = React;
 
 module.exports = StyleSheet.create({
@@ -111,13 +111,8 @@ module.exports = StyleSheet.create({
     padding: 12,
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 30,
-    height: commonFunctions.screenHeight(8, 0),
-    width: commonFunctions.screenWidth(62, 0),
-    alignSelf: 'center',
-    // marginLeft: commonFunctions.screenWidth(19, 0),
-    // marginRight: commonFunctions.screenWidth(19, 0),
-    bottom: 30,
+    marginLeft: 30,
+    marginRight: 30,
     borderRadius: 8
   },
   customButton: {
@@ -138,6 +133,13 @@ module.exports = StyleSheet.create({
     // marginLeft: 10,
     height: 22,
     width: 22
+  },
+  icons: {
+    marginRight: 15
+  },
+  commonText: {
+    fontSize: 14,
+    fontFamily: Fonts.RobotoRegular,
+    color: colors.colorWhite
   }
-
 });

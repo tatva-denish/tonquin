@@ -4,28 +4,21 @@ import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 /* import common styles & functions */
 import * as commonStyle from '../../../theme/css/style';
+import {colors, Fonts} from '../../../theme/css/common';
 import * as commonFunctions from '../../../theme/js/CommonFunctions';
 /* react navigation */
 import {connect} from 'react-redux';
-import IconFeather from 'react-native-vector-icons/Feather';
+// import IconFeather from 'react-native-vector-icons/Feather';
 // import {screenHeight} from '../../../theme/js/CommonFunctions';
 
 class ProfileView extends Component {
   static navigationOptions = ({navigation}) => ({
-    title: 'Profile',
+    title: '',
     tabBarLabel: null,
     gesturesEnabled: true,
-    headerLeft: (
-      <TouchableOpacity
-        style={commonStyle.customBackButton}
-        onPress={() => navigation.goBack()}
-      >
-        <Image
-          style={[commonStyle.customBack, {}]}
-          source={require('../../../../images/btnBack.png')}
-        />
-      </TouchableOpacity>
-    ),
+    headerStyle: {
+      backgroundColor: colors.colorLightGray
+    },
     headerRight: (
       <TouchableOpacity
         style={commonStyle.customBackButton}
@@ -33,7 +26,7 @@ class ProfileView extends Component {
       >
         <Image
           style={[commonStyle.customBack, {}]}
-          source={require('../../../../images/btnBack.png')}
+          source={require('../../../../images/Edit.png')}
         />
       </TouchableOpacity>
     )
@@ -62,27 +55,11 @@ class ProfileView extends Component {
             <View style={styles.detailContainer}>
               {/* <View style={styles.profileInfoView} /> */}
 
-              <View
-                style={[commonStyle.bgColorWhite, styles.titleContainerView]}
-              >
-                <View
-                  style={{
-                    width: commonFunctions.screenWidth(27.9, 0),
-                    marginLeft: 15,
-                    justifyContent: 'center',
-                    alignItems: 'center'
-                  }}
-                >
+              <View style={[styles.titleContainerView,{paddingTop: 5, paddingBottom: 5}]}>
+                <View style={{marginLeft: 15,justifyContent: 'flex-end', marginBottom: 7}}>
                   <Text style={styles.textTruck}>Truck</Text>
                 </View>
-                <View
-                  style={{
-                    backgroundColor: 'transparent',
-                    marginLeft: 5,
-                    marginTop: 3,
-                    width: commonFunctions.screenWidth(72.1, 0)
-                  }}
-                >
+                <View style={{backgroundColor: 'transparent',marginLeft: 10,width: commonFunctions.screenWidth(72.1, 0)}}>
                   <Text style={styles.textName}>Robert Rose</Text>
                   <Text style={styles.textCarType}>
                     Ford F1500
@@ -90,65 +67,61 @@ class ProfileView extends Component {
                   <Text style={styles.textHeadings}>Deliveries 124</Text>
                 </View>
               </View>
-
               <View style={styles.contactInfoView}>
                 <View style={styles.textWrap}>
-                  <Text style={styles.textLabel}>Contact Info</Text>
+                  <Text style={[commonStyle.commonText, {color: '#242633'}]}>Contact Info</Text>
                 </View>
                 <View style={styles.contactInfoDetails}>
                   <View style={styles.contactNumber}>
-                    <IconFeather.Button
-                      name='phone'
-                      iconStyle={styles.icons}
-                      backgroundColor='transparent'
-                      size={22}
-                      padding={0}
-                      height={30}
-                      width={40}
-                      marginRight={-5}
-                      color='#F02948'
-                    />
-                    <Text style={{fontSize: 14, color: '#FFFFFF'}}>374-823-2343</Text>
+                    <Image style={commonStyle.icons} source={require('../../../../images/Phone.png')} />
+                    <Text style={commonStyle.commonText}>374-823-2343</Text>
                   </View>
                   <View style={styles.contactAddress}>
-                    <IconFeather.Button
-                      name='map'
-                      iconStyle={styles.icons}
-                      backgroundColor='transparent'
-                      size={22}
-                      padding={0}
-                      height={30}
-                      width={40}
-                      marginRight={-5}
-                      color='#F02948'
-                    />
-                    <Text style={{fontSize: 14, color: '#FFFFFF'}}>Citrus Springs, FL</Text>
+                    <Image style={commonStyle.icons} source={require('../../../../images/Globe.png')} />
+                    <Text style={commonStyle.commonText}>Citrus Springs, FL</Text>
                   </View>
                 </View>
               </View>
-              <View style={styles.DocumentsView}>
-                <View style={styles.textWrap}>
-                  <Text style={styles.textLabel}>Documents</Text>
+              <View style={[styles.DocumentsView, {}]}>
+                <View style={[styles.textWrap, {marginTop: 0}]}>
+                  <Text style={[commonStyle.commonText, {color: '#242633'}]}>Documents</Text>
                 </View>
                 <View style={styles.documentContainer}>
-                  <View style={{width: commonFunctions.screenWidth(70, 0), height: 80, backgroundColor: 'powderblue', marginBottom: 10, borderRadius: 7}}>
-                    <View style={[styles.textOverlay, {borderTopLeftRadius: 7, borderTopRightRadius: 7}]}>
-                      <Text style={styles.headline}>Drivers License</Text>
+                  <View style={styles.documentInnerContainer}>
+                    <View style={[styles.documentHeaderWrapper,{backgroundColor: colors.colorWhite}]}>
+                      <Text style={[styles.headline,{color: '#292B38'}]}>Drivers License</Text>
+                    </View>
+                    <View style={styles.documentImageWrapper}>
+                      <Image style={[styles.coverImageContainer, {resizeMode: 'cover', borderBottomLeftRadius: 7, borderBottomRightRadius: 7}]} source={require('../../../../images/pickupboxcar.jpg')} />
+                      <View style={styles.documentOverlayText}>
+                        <Text style={[styles.headline, {fontSize: 18, color: colors.colorWhite}]}>Documents Approval Pending</Text>
+                      </View>
                     </View>
                   </View>
-                  <View style={{width: commonFunctions.screenWidth(70, 0), height: 80, backgroundColor: 'skyblue', marginBottom: 10, borderRadius: 7}} >
-                    <View style={[styles.textOverlay, {borderTopLeftRadius: 7, borderTopRightRadius: 7}]}>
+                  <View style={styles.documentInnerContainer}>
+                    <View style={styles.documentHeaderWrapper}>
                       <Text style={styles.headline}>Proof of Insurance</Text>
                     </View>
+                    <View style={styles.documentImageWrapper}>
+                      <Image style={[styles.coverImageContainer, {resizeMode: 'cover', borderBottomLeftRadius: 7, borderBottomRightRadius: 7}]} source={require('../../../../images/pickupboxcar.jpg')} />
+                      {/* <View style={styles.documentOverlayText}>
+                        <Text style={[styles.headline, { fontSize: 18, color: colors.colorWhite }]}>Documents Approval Pending</Text>
+                      </View> */}
+                    </View>
                   </View>
-                  <View style={{width: commonFunctions.screenWidth(70, 0), height: 80, backgroundColor: 'steelblue', borderRadius: 7}} >
-                    <View style={[styles.textOverlay, {borderTopLeftRadius: 7, borderTopRightRadius: 7}]}>
+                  <View style={[styles.documentInnerContainer,{marginBottom: 0}]}>
+                    <View style={styles.documentHeaderWrapper}>
                       <Text style={styles.headline}>Vehical Registration</Text>
+                    </View>
+                    <View style={styles.documentImageWrapper}>
+                      <Image style={[styles.coverImageContainer, {resizeMode: 'cover', borderBottomLeftRadius: 7, borderBottomRightRadius: 7}]} source={require('../../../../images/pickupboxcar.jpg')} />
+                      {/* <View style={styles.documentOverlayText}>
+                        <Text style={[styles.headline, { fontSize: 18, color: colors.colorWhite }]}>Documents Approval Pending</Text>
+                      </View> */}
                     </View>
                   </View>
                 </View>
               </View>
-              {/* <Text style={styles.textLabel}>Hello, I am Profile</Text> */}
             </View>
           </View>
         </KeyboardAwareScrollView>
@@ -216,14 +189,11 @@ const styles = StyleSheet.create({
     width: commonFunctions.screenWidth(100, 0)
   },
   contactInfoView: {
-    height: commonFunctions.screenHeight(18, 0),
-    // backgroundColor: 'green',#242633
-    width: commonFunctions.screenWidth(100, 0)
+    height: 120,
+    width: '100%'
   },
   DocumentsView: {
-    height: commonFunctions.screenHeight(65, 0),
-    // backgroundColor: 'blue',
-    width: commonFunctions.screenWidth(100, 0)
+    width: '100%'
   },
   textWrap: {
     // marginLeft: 5,
@@ -231,65 +201,46 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 7,
-    width: commonFunctions.screenWidth(25, 0),
+    width: commonFunctions.screenWidth(26, 0),
     height: commonFunctions.screenHeight(4, 0),
     backgroundColor: '#FFFFFF',
     marginLeft: 15
   },
   textLabel: {
-    // paddingLeft: 5,
-    // paddingHorizontal: 2,
-    // paddingVertical: 2,
-    // paddingRight: 5,
     fontSize: 12,
     color: '#242633'
-    // backgroundColor: '#FFFFFF'
-
-    // color: '#FAFBFB',
-    // padding: 2,
-    // alignSelf: 'flex-start',
-    // fontWeight: 'bold',
-    // borderWidth: 2,
-    // borderColor: 'white',
-    // backgroundColor: 'transparent',
-    // width: commonFunctions.screenWidth(26, 0),
-    // textAlign: 'center',
-    // borderRadius: 5
-
   },
   // chnages
   titleContainerView: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    backgroundColor: 'transparent'
-    // alignItems: "center",
+    backgroundColor: 'transparent',
+    height: '15%'
   },
   textName: {
-    fontSize: 30,
     color: 'white',
-    alignSelf: 'flex-start'
-    // fontWeight: 'bold'
+    alignSelf: 'flex-start',
+    fontFamily: Fonts.RobotoRegular,
+    fontSize: 26
   },
   textCarType: {
-    fontSize: 20,
+    fontFamily: Fonts.RobotoLight,
+    fontSize: 18,
     color: '#EDEDEE',
-    alignSelf: 'flex-start',
-    fontWeight: 'normal'
+    alignSelf: 'flex-start'
   },
   textHeadings: {
+    fontFamily: Fonts.RobotoBold,
     fontSize: 14,
     color: '#EDEDEE',
-    alignSelf: 'flex-start',
-    fontWeight: 'normal'
+    alignSelf: 'flex-start'
   },
   textTruck: {
-    fontSize: 14,
+    fontSize: 16,
+    fontFamily: Fonts.RobotoBold,
     color: '#FAFBFB',
     padding: 2,
-    alignSelf: 'flex-start',
-    marginTop: 24,
-    // justifyContent: 'center',
-    // alignItems: 'center',
+    alignSelf: 'center',
     fontWeight: 'bold',
     borderWidth: 2,
     borderColor: 'white',
@@ -301,33 +252,33 @@ const styles = StyleSheet.create({
   contactInfoDetails: {
     flex: 1,
     flexDirection: 'row',
-    height: commonFunctions.screenHeight(100, 0),
-    width: commonFunctions.screenWidth(100, 0)
+    alignSelf: 'center',
+    justifyContent: 'center',
+    height: '100%',
+    width: '85%'
   },
   contactNumber: {
-    flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    width: commonFunctions.screenWidth(50, 0)
+    width: '50%'
   },
   contactAddress: {
-    flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
-    // justifyContent: 'center',
-    width: commonFunctions.screenWidth(50, 0)
+    justifyContent: 'center',
+    width: '50%'
   },
   documentContainer: {
-    marginTop: commonFunctions.screenHeight(3,0),
-    // marginBottom: commonFunctions.screenHeight(3,0),
+    marginTop: '8%',
+    marginBottom: '8%',
     alignItems: 'center',
     justifyContent: 'center'
   },
   headline: {
     fontSize: 16,
+    fontFamily: Fonts.RobotoMedium,
     textAlign: 'center',
-    backgroundColor: 'rgba(0,0,0,0)',
     color: 'white'
   },
   iconImgoverlay: {
@@ -339,12 +290,34 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 7,
     padding: 0, margin: 0
   },
-  textOverlay: {
-    opacity: 1,
-    position: 'absolute',
-    width: '100%',
+  documentInnerContainer: {
+    width: '70%',
+    height: 80,
+    backgroundColor: 'transparent',
+    marginBottom: 10,
+    borderRadius: 7
+  },
+  documentHeaderWrapper: {
     backgroundColor: '#F02948',
-    padding: 0, margin: 0
+    height: '30%',
+    borderTopLeftRadius: 7,
+    borderTopRightRadius: 7
+  },
+  documentImageWrapper: {
+    position: 'relative',
+    height: '70%',
+    borderBottomLeftRadius: 7,
+    borderBottomRightRadius: 7
+  },
+  documentOverlayText: {
+    position: 'absolute',
+    opacity: 0.8,
+    width: '100%',
+    height: '100%',
+    justifyContent: 'center',
+    backgroundColor: '#242633',
+    borderBottomLeftRadius: 7,
+    borderBottomRightRadius: 7
   }
 });
 

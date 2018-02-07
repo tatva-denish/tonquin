@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import {
   Text,
   View,
@@ -10,8 +10,8 @@ import {
 } from 'react-native';
 import * as commonStyle from '../../../../theme/css/style';
 import * as commonFunctions from '../../../../theme/js/CommonFunctions';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import { connect } from 'react-redux';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import {connect} from 'react-redux';
 
 class ChangePasswordView extends Component {
 
@@ -23,7 +23,7 @@ class ChangePasswordView extends Component {
     // tabBarOptions: {
     //   activeTintColor: '#e91e63'
     // },
-    tabBarIcon: ({ focused }) => (
+    tabBarIcon: ({focused}) => (
       <Image
         source={require('../../../../../images/settings.png')}
         style={{
@@ -85,7 +85,7 @@ class ChangePasswordView extends Component {
                     underlineColorAndroid='#D3D3D3'
                     onSubmitEditing={() => this.refs.ConfirmPasswordInput.focus()} />
                   {
-                    Platform.OS === 'ios' && (<View style={{ backgroundColor: commonStyle.colorWhite, height: 1 }} />)
+                    Platform.OS === 'ios' && (<View style={{backgroundColor: commonStyle.colorWhite, height: 1}} />)
                   }
                 </View>
               </View>
@@ -106,15 +106,15 @@ class ChangePasswordView extends Component {
                     returnKeyType='go'
                     underlineColorAndroid='#D3D3D3' />
                   {
-                    Platform.OS === 'ios' && (<View style={{ backgroundColor: commonStyle.colorWhite, height: 1 }} />)
+                    Platform.OS === 'ios' && (<View style={{backgroundColor: commonStyle.colorWhite, height: 1}} />)
                   }
                 </View>
               </View>
             </View>
           </View>
         </KeyboardAwareScrollView>
-        <TouchableOpacity style={[commonStyle.bgbutton, commonStyle.bgColorDarkPink, { marginBottom: 20 }]}>
-          <Text style={{ fontSize: 16, color: 'white' }}>Submit</Text>
+        <TouchableOpacity style={[commonStyle.bgbutton, commonStyle.bgColorDarkPink, {marginBottom: 20}]}>
+          <Text style={{fontSize: 16, color: 'white'}}>Submit</Text>
         </TouchableOpacity>
       </View>
     );

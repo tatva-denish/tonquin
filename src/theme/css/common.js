@@ -1,13 +1,14 @@
 export const AllTexts = {
   HeaderText: 'Tonquin',
   ForgotText: 'Forgot your password?',
-  ForgotEmail: 'Enter your email or phone number below and we will send you a temporary password..',
+  ForgotEmail: 'Enter your email below and we will send you a temporary password..',
   SignInBottomText: 'By signing in to the TONQUIN app you are agreeing to the',
   TermsConditionText: 'Terms & Conditions.'
 };
 
 export const colors = {
-  colorWhite: '#ffffff',
+  colorLightGray: '#F9F9F9',
+  colorWhite: '#FFFFFF',
   colorGrey: '#88b8ff',
   colorDoveGrey: '#666666',
   colorBlue: '#5DA5ED',
@@ -31,7 +32,7 @@ export const colors = {
   colorLightMalibu: '#81ACFF',
   colorCobalt: '#0947b7',
   colorGray: '#a2a5a9',
-  colorDarkPink: '#F02948'
+  colorDarkPink: '#E8284D'
 };
 
 export const Fonts = {
