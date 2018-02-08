@@ -52,7 +52,7 @@ class SettingView extends Component {
   alertItemName = item => {
     switch (item) {
       case 'Edit Profile':
-        this.props.navigation.navigate('ProfileView');
+        this.props.navigation.navigate('EditProfileView');
         // this.props.navigation.navigate('EditProfileView');
         break;
       case 'Change Password':

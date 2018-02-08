@@ -40,17 +40,17 @@ class EditProfileView extends Component {
       fontWeight: 'normal',
       fontSize: 18
     },
-    headerLeft: (
-      <TouchableOpacity
-        style={commonStyle.customBackButton}
-        onPress={() => navigation.goBack()}
-      >
-        <Image
-          style={[commonStyle.customBack, { marginLeft: Platform.OS === 'ios' ? 0 : 0 }]}
-          source={require('../../../../../images/btnBack.png')}
-        />
-      </TouchableOpacity>
-    ),
+    // headerLeft: (
+    //   <TouchableOpacity
+    //     style={commonStyle.customBackButton}
+    //     onPress={() => navigation.goBack()}
+    //   >
+    //     <Image
+    //       style={[commonStyle.customBack, { marginLeft: Platform.OS === 'ios' ? 0 : 0 }]}
+    //       source={require('../../../../../images/btnBack.png')}
+    //     />
+    //   </TouchableOpacity>
+    // ),
 
     tabBarIcon: ({ focused }) => (
       <Image
