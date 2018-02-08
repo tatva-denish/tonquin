@@ -63,20 +63,6 @@ class ForgotView extends Component {
     }
   }
 
-  invalideCredentialMessage() {
-    if (this.state.usertext.length === 0) {
-      // Alert.alert('Please enter username');
-      this.setState({
-        isError: true,
-        errorMessage: 'Please enter email'
-      });
-    }
-    else {
-      this.setState({
-        isError: false
-      });
-    }
-  }
   navigateBackPopToView() {
     this.props.navigation.goBack();
   }
@@ -86,7 +72,13 @@ class ForgotView extends Component {
       // Alert.alert('Please enter username');
       this.setState({
         isError: true,
-        errorMessage: 'Please enter email'
+        errorMessage: 'Please enter email.'
+      });
+    }
+    else if(!commonFunctions.validateEmail(this.state.usertext)){
+      this.setState({
+        isError: true,
+        errorMessage: 'Please enter valid email.'
       });
     }
     else {
@@ -147,6 +139,9 @@ class ForgotView extends Component {
                     placeholder='Email or Phone number'
                     returnKeyType='go'
                     underlineColorAndroid='#D3D3D3'
+                    onSubmitEditing={() => {
+                      this.submitOnPress();
+                    }}
                   />
                   {/* Hairline added below textfield using View */}
                   {Platform.OS === 'ios' && (
