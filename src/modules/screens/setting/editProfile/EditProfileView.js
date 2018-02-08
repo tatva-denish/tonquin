@@ -1,5 +1,5 @@
 //import liraries
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import {
   View,
   StyleSheet,
@@ -9,16 +9,16 @@ import {
   TextInput,
   Platform
 } from 'react-native';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import ActionSheet from 'react-native-actionsheet';
 import ImagePicker from 'react-native-image-crop-picker';
 import IconFeather from 'react-native-vector-icons/Feather';
 /* Common Styles & Functions */
 import * as commonStyle from '../../../../theme/css/style';
-import {AllTexts} from '../../../../theme/css/common';
+import { AllTexts, Fonts, colors } from '../../../../theme/css/common';
 import * as commonFunctions from '../../../../theme/js/CommonFunctions';
-import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
-import {Dropdown} from 'react-native-material-dropdown';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { Dropdown } from 'react-native-material-dropdown';
 /* Set screen width */
 const CANCEL_INDEX = 0;
 
@@ -27,7 +27,7 @@ const options = ['Cancel', 'Take a Photo', 'Take From Gallery'];
 
 // create a component
 class EditProfileView extends Component {
-  static navigationOptions = ({navigation}) => ({
+  static navigationOptions = ({ navigation }) => ({
     title: 'Edit Profile',
     tabBarLabel: null,
     gesturesEnabled: true,
@@ -35,19 +35,24 @@ class EditProfileView extends Component {
     // tabBarOptions: {
     //   activeTintColor: '#e91e63'
     // },
+    headerTitleStyle: {
+      fontFamily: Fonts.RobotoMedium,
+      fontWeight: 'normal',
+      fontSize: 18
+    },
     headerLeft: (
       <TouchableOpacity
         style={commonStyle.customBackButton}
         onPress={() => navigation.goBack()}
       >
         <Image
-          style={[commonStyle.customBack, {marginLeft: Platform.OS === 'ios' ? 0 : 0}]}
+          style={[commonStyle.customBack, { marginLeft: Platform.OS === 'ios' ? 0 : 0 }]}
           source={require('../../../../../images/btnBack.png')}
         />
       </TouchableOpacity>
     ),
 
-    tabBarIcon: ({focused}) => (
+    tabBarIcon: ({ focused }) => (
       <Image
         source={require('../../../../../images/settings.png')}
         style={{
@@ -69,10 +74,10 @@ class EditProfileView extends Component {
       vehicalType: '',
       vehicalMake: '',
       vehicalModel: '',
-      statesArray: [{value: 'Gujarat'}, {value: 'Maharashtra'}, {value: 'Goa'}],
-      vehicalTypeArray: [{value: 'Type 1'}, {value: 'Type 1'}, {value: 'Type 1'}],
-      vehicalMakeArray: [{value: 'Make 1'}, {value: 'Make 2'}, {value: 'Make 3'}],
-      vehicalModelArray: [{value: 'Model 1'}, {value: 'Model 2'}, {value: 'Model 3'}]
+      statesArray: [{ value: 'Gujarat' }, { value: 'Maharashtra' }, { value: 'Goa' }],
+      vehicalTypeArray: [{ value: 'Type 1' }, { value: 'Type 2' }, { value: 'Type 3' }],
+      vehicalMakeArray: [{ value: 'Make 1' }, { value: 'Make 2' }, { value: 'Make 3' }],
+      vehicalModelArray: [{ value: 'Model 1' }, { value: 'Model 2' }, { value: 'Model 3' }]
     };
 
     this.setUserProfile = this.setUserProfile.bind(this);
@@ -251,8 +256,8 @@ class EditProfileView extends Component {
     return (
       <View style={commonStyle.container}>
         <KeyboardAwareScrollView extraHeight={0}>
-          <View style={styles.topContainerView}>
-            <View style={styles.wrapper}>
+          <View style={[styles.topContainerView, { marginTop: 25 }]}>
+            <View style={[styles.wrapper, {}]}>
               <View style={styles.userProfile}>
                 <TouchableOpacity
                   style={[styles.Imgcontainer]}
@@ -271,7 +276,7 @@ class EditProfileView extends Component {
                     ) : (
                       <View style={styles.backgroundContainer}>
                         <Image
-                          source={{uri: this.state.pathProfile}}
+                          source={{ uri: this.state.pathProfile }}
                           style={
                             styles.backdrop}
                         />
@@ -320,7 +325,7 @@ class EditProfileView extends Component {
                     ) : (
                       <View style={styles.backgroundContainer}>
                         <Image
-                          source={{uri: this.state.vehicalPath}}
+                          source={{ uri: this.state.vehicalPath }}
                           style={
                             styles.backdrop}
                         />
@@ -353,28 +358,26 @@ class EditProfileView extends Component {
               </View>
             </View>
 
-            <View
-              style={[
-                commonStyle.container,
-                styles.userInputContainer
-              ]}
-            >
+            <View style={[commonStyle.container, styles.userInputContainer, {}]}>
               {/* Username input */}
               <View style={styles.horizontal}>
-                <IconFeather.Button
+                {/* <IconFeather.Button
                   name='user'
                   iconStyle={styles.icons}
                   backgroundColor='transparent'
                   size={22}
                   color='#000'
-                />
-                <View style={styles.textInputView}>
+                /> */}
+                <View style={{ justifyContent: 'center' }}>
+                  <Image style={[commonStyle.icons, { marginRight: 10 }]} source={require('../../../../../images/user.png')} />
+                </View>
+                <View style={[styles.textInputView, {}]}>
                   {/* Create textfiled for enter user name */}
 
                   <TextInput
                     ref='userName'
                     style={
-                      styles.textInput}
+                      [styles.textInput]}
                     autoCapitalize='none'
                     // onChangeText={loginUser => this.setState({loginUser})}
                     placeholder='Username'
@@ -396,17 +399,9 @@ class EditProfileView extends Component {
               </View>
               {/* Email input */}
               <View style={[styles.horizontal]}>
-                <IconFeather.Button
-                  name='mail'
-                  iconStyle={styles.icons}
-                  backgroundColor='transparent'
-                  size={22}
-                  color='#000'
-                />
-                {/* <Image
-                  style={styles.icons}
-                  source={require('../../../../../images/UserIcon.png')}
-                /> */}
+                <View style={{ justifyContent: 'center' }}>
+                  <Image style={[commonStyle.icons, { marginRight: 10 }]} source={require('../../../../../images/mail.png')} />
+                </View>
                 <View style={styles.textInputView}>
                   {/* Create textfiled for enter user name */}
 
@@ -435,18 +430,10 @@ class EditProfileView extends Component {
               </View>
               {/* Phone input */}
               <View style={styles.horizontal}>
-                <IconFeather.Button
-                  name='phone'
-                  iconStyle={styles.icons}
-                  backgroundColor='transparent'
-                  size={22}
-                  color='#000'
-                />
-                {/* <Image
-                  style={styles.icons}
-                  source={require('../../../../../images/UserIcon.png')}
-                /> */}
-                <View style={styles.textInputView}>
+                <View style={{ justifyContent: 'center' }}>
+                  <Image style={[commonStyle.icons, { marginRight: 10 }]} source={require('../../../../../images/phoneBlack.png')} />
+                </View>
+                <View style={[styles.textInputView, {}]}>
                   {/* Create textfiled for enter user name */}
 
                   <TextInput
@@ -474,18 +461,10 @@ class EditProfileView extends Component {
               </View>
               {/* City input */}
               <View style={styles.horizontal}>
-                <IconFeather.Button
-                  name='globe'
-                  iconStyle={styles.icons}
-                  backgroundColor='transparent'
-                  size={22}
-                  color='#000'
-                />
-                {/* <Image
-                  style={styles.icons}
-                  source={require('../../../../../images/UserIcon.png')}
-                /> */}
-                <View style={styles.textInputView}>
+                <View style={{ justifyContent: 'center' }}>
+                  <Image style={[commonStyle.icons, { marginRight: 14 }]} source={require('../../../../../images/global.png')} />
+                </View>
+                <View style={[styles.textInputView, {}]}>
                   {/* Create textfiled for enter user name */}
 
                   <TextInput
@@ -510,248 +489,274 @@ class EditProfileView extends Component {
                   )}
                 </View>
               </View>
-            </View>
-            {/* <View>
-                <View style={styles.listInnerView}>
-                  {<View style={styles.view} />}
-
+              <View style={styles.horizontal}>
+                <View style={[styles.textInputView, {}]}>
+                  <Dropdown
+                    label='State'
+                    data={this.state.statesArray}
+                    value={this.state.states}
+                    textColor='rgba(0, 0, 0, 1.0)'
+                    fontSize={15}
+                    animationDuration={175}
+                    containerStyle={{
+                      // backgroundColor: 'blue',
+                      width: commonFunctions.screenWidth(100, 0),
+                      paddingLeft: 5,
+                      marginTop: -17,
+                      marginLeft: 30
+                    }}
+                    onChangeText={value => this.setState({ states: value })}
+                  />
                 </View>
-                <View
-                  style={{
-                    width: commonFunctions.screenWidth(85,0),
-                    height: 1,
-                    // backgroundColor: commonStyle.colorWhite,
-                    marginLeft: commonFunctions.screenWidth(0,0)
-                  }}
-                ></View>
-            </View> */}
-            <View style={styles.horizontal}>
-              <View style={styles.textInputView}>
-                <Dropdown
-                  label='State'
-                  data={this.state.statesArray}
-                  value={this.state.states}
-                  textColor='rgba(0, 0, 0, 1.0)'
-                  fontSize={15}
-                  animationDuration={175}
-                  containerStyle={{
-                    width: commonFunctions.screenWidth(78.2, 0),
-                    paddingLeft: 5,
-                    marginTop: -17,
-                    marginLeft: 42
-                  }}
-                  onChangeText={value => this.setState({states: value})}
-                />
               </View>
-            </View>
-            <View style={[styles.horizontal, {justifyContent: 'center', alignItems: 'center'}]}>
-              <IconFeather.Button
-                name='globe'
-                iconStyle={[styles.icons]}
-                backgroundColor='transparent'
-                size={22}
-                color='#000'
-              />
-              <View style={styles.textInputView}>
-                <Dropdown
-                  label='Type of Vehical'
-                  data={this.state.vehicalTypeArray}
-                  value={this.state.vehicalType}
-                  textColor='rgba(0, 0, 0, 1.0)'
-                  fontSize={15}
-                  animationDuration={175}
-                  containerStyle={{
-                    width: commonFunctions.screenWidth(78.2, 0),
-                    paddingLeft: 5,
-                    marginTop: -11
-                    // marginLeft: 42
-                  }}
-                  onChangeText={value => this.setState({vehicalType: value})}
-                />
-              </View>
-            </View>
-            <View style={styles.horizontal}>
-              <View style={styles.textInputView}>
-                <Dropdown
-                  label='Vehical make'
-                  data={this.state.vehicalMakeArray}
-                  value={this.state.vehicalMake}
-                  textColor='rgba(0, 0, 0, 1.0)'
-                  fontSize={15}
-                  animationDuration={175}
-                  containerStyle={{
-                    width: commonFunctions.screenWidth(78.2, 0),
-                    paddingLeft: 5,
-                    marginTop: -17,
-                    marginLeft: 42
-                  }}
-                  onChangeText={value => this.setState({vehicalMake: value})}
-                />
-              </View>
-            </View>
-            <View style={styles.horizontal}>
-              <View style={styles.textInputView}>
-                <Dropdown
-                  label='Vehical model'
-                  data={this.state.vehicalModelArray}
-                  value={this.state.vehicalModel}
-                  textColor='rgba(0, 0, 0, 1.0)'
-                  fontSize={15}
-                  animationDuration={175}
-                  containerStyle={{
-                    width: commonFunctions.screenWidth(78.2, 0),
-                    paddingLeft: 5,
-                    marginTop: -17,
-                    marginLeft: 42
-                  }}
-                  onChangeText={value => this.setState({vehicalModel: value})}
-                />
-              </View>
-            </View>
-            <View style={[styles.horizontal, {marginTop: 15}]}>
-              <IconFeather.Button
-                name='file-text'
-                iconStyle={[styles.icons]}
-                backgroundColor='transparent'
-                size={22}
-                color='#000'
-              />
-              <View style={styles.documentContainer}>
-                <View style={{width: commonFunctions.screenWidth(70, 0), height: 80, backgroundColor: 'powderblue', marginBottom: 10, borderRadius: 7}}>
-                  <View style={[styles.textOverlay,{borderTopLeftRadius: 7, borderTopRightRadius: 7}]}>
-                    <Text style={styles.headline}>Drivers License</Text>
-                  </View>
-                  {this.state.pathLicense === ''
-                     ? (
-                     <View style={styles.vehicalInfoContainer} />
-                    ) : (
-                      <View style={styles.vehicalInfoContainer}>
-                        <Image
-                          source={{uri: this.state.pathLicense}}
-                          style={
-                            styles.vehicalInfoImages}
-                        />
-                      </View>
-                    )}
-                  <View style={[styles.overlay,{borderBottomRightRadius: 7}]}>
-                    <IconFeather.Button
-                      name='camera'
-                      backgroundColor='transparent'
-                      size={20}
-                      borderRadius={3}
-                      padding={0}
-                      height={30}
-                      width={40}
-                      marginRight={-10}
-                      justifyContent='center'
-                      onPress={() => {
-                        this.refs['setDriverLicense'].show();
-                      }}
-                    />
-                    <ActionSheet
-                  ref='setDriverLicense'
-                  // title={}
-                  options={options}
-                  cancelButtonIndex={CANCEL_INDEX}
-                  onPress={this.setDriverLicense}
-                />
-                  </View>
+              <View style={[styles.horizontal]}>
+                <View style={{ justifyContent: 'center' }}>
+                  <Image style={[commonStyle.icons, { marginRight: 10 }]} source={require('../../../../../images/truck.png')} />
                 </View>
-                <View style={{width: commonFunctions.screenWidth(70, 0), height: 80, backgroundColor: 'skyblue', marginBottom: 10, borderRadius: 7}} >
-                  <View style={[styles.textOverlay, {borderTopLeftRadius: 7, borderTopRightRadius: 7}]}>
-                    <Text style={styles.headline}>Proof of Insurance</Text>
-                  </View>
-                  {this.state.pathInsurance === ''
-                     ? (
-                     <View style={styles.vehicalInfoContainer} />
-                    ) : (
-                      <View style={styles.vehicalInfoContainer}>
-                        <Image
-                          source={{uri: this.state.pathInsurance}}
-                          style={
-                            styles.vehicalInfoImages}
-                        />
-                      </View>
-                    )}
-                  <View style={[styles.overlay,{borderBottomRightRadius: 7}]}>
-                    <IconFeather.Button
-                      name='camera'
-                      backgroundColor='transparent'
-                      size={20}
-                      borderRadius={3}
-                      padding={0}
-                      height={30}
-                      width={40}
-                      marginRight={-10}
-                      justifyContent='center'
-                      onPress={() => {
-                        this.refs['setProofInsurance'].show();
-                      }}
-
-                    />
-                    <ActionSheet
-                  ref='setProofInsurance'
-                  // title={}
-                  options={options}
-                  cancelButtonIndex={CANCEL_INDEX}
-                  onPress={this.setProofInsurance}
-                />
-                  </View>
+                <View style={[styles.textInputView, {}]}>
+                  <Dropdown
+                    label='Type of Vehical'
+                    data={this.state.vehicalTypeArray}
+                    value={this.state.vehicalType}
+                    textColor='rgba(0, 0, 0, 1.0)'
+                    fontSize={15}
+                    animationDuration={175}
+                    containerStyle={{
+                      // backgroundColor: 'pink',
+                      width: commonFunctions.screenWidth(100, 0),
+                      paddingLeft: 5,
+                      marginTop: -11
+                    }}
+                    onChangeText={value => this.setState({ vehicalType: value })}
+                  />
                 </View>
-                <View style={{width: commonFunctions.screenWidth(70, 0), height: 80, backgroundColor: 'steelblue', borderRadius: 7}} >
-                  <View style={[styles.textOverlay, {borderTopLeftRadius: 7, borderTopRightRadius: 7}]}>
-                    <Text style={styles.headline}>Vehical Registration</Text>
+              </View>
+              <View style={styles.horizontal}>
+                <View style={styles.textInputView}>
+                  <Dropdown
+                    label='Vehical make'
+                    data={this.state.vehicalMakeArray}
+                    value={this.state.vehicalMake}
+                    textColor='rgba(0, 0, 0, 1.0)'
+                    fontSize={15}
+                    animationDuration={175}
+                    containerStyle={{
+                      width: commonFunctions.screenWidth(100, 0),
+                      paddingLeft: 5,
+                      marginTop: -17,
+                      marginLeft: 30
+                    }}
+                    onChangeText={value => this.setState({ vehicalMake: value })}
+                  />
+                </View>
+              </View>
+              <View style={styles.horizontal}>
+                <View style={styles.textInputView}>
+                  <Dropdown
+                    label='Vehical model'
+                    data={this.state.vehicalModelArray}
+                    value={this.state.vehicalModel}
+                    textColor='rgba(0, 0, 0, 1.0)'
+                    fontSize={15}
+                    animationDuration={175}
+                    containerStyle={{
+                      width: commonFunctions.screenWidth(100, 0),
+                      paddingLeft: 5,
+                      marginTop: -17,
+                      marginLeft: 30
+                    }}
+                    onChangeText={value => this.setState({ vehicalModel: value })}
+                  />
+                </View>
+              </View>
+              <View style={[styles.horizontal, { marginTop: 20 }]}>
+                <View style={{ justifyContent: 'flex-start' }}>
+                  <Image style={[commonStyle.icons, { marginRight: 10 }]} source={require('../../../../../images/document.png')} />
+                </View>
+                <View style={[styles.documentContainer, { marginLeft: 10 }]}>
+                  <View style={[styles.documentInnerContainer, { width: '85%', backgroundColor: 'skyblue' }]}>
+                    <View style={[styles.documentHeaderWrapper, {}]}>
+                      <Text style={[styles.headline, {}]}>Drivers License</Text>
+                    </View>
+                    <View style={styles.documentImageWrapper}>
+                      {this.state.pathLicense === ''
+                        ? (
+                          <View style={styles.documentOverlayText}>
+                            <Text style={[styles.headline, { fontSize: 18, color: colors.colorWhite }]}>Documents Approval Pending</Text>
+                          </View>
+                        ) : (
+                          <Image style={[styles.vehicalInfoImages, { resizeMode: 'cover', borderBottomLeftRadius: 7, borderBottomRightRadius: 7 }]} source={{ uri: this.state.pathLicense }} />
+                        )}
+                    </View>
+                    <View style={[styles.overlay, { borderBottomRightRadius: 7 }]}>
+                      <TouchableOpacity style={{ padding: 7 }} onPress={() => { this.refs['setDriverLicense'].show(); }}>
+                        <Image style={[commonStyle.icons, { marginRight: 0 }]} source={require('../../../../../images/camera.png')} />
+                      </TouchableOpacity>
+                      <ActionSheet
+                        ref='setDriverLicense'
+                        // title={}
+                        options={options}
+                        cancelButtonIndex={CANCEL_INDEX}
+                        onPress={this.setDriverLicense}
+                      />
+                    </View>
                   </View>
-                  {this.state.pathRegistration === ''
-                     ? (
-                     <View style={styles.vehicalInfoContainer}>
-                     <Text style={{flex: 1, width: 200, height: 20, backgroundColor: 'red'}}>Document Aproval Pending</Text>
-                                            </View>
-                    ) : (
-                      <View style={styles.vehicalInfoContainer}>
-                        <Image
-                          source={{uri: this.state.pathRegistration}}
-                          style={
-                            styles.vehicalInfoImages}
-                        />
-                      </View>
-                    )}
-                  <View style={[styles.overlay,{borderBottomRightRadius: 7}]}>
-                    <IconFeather.Button
-                      name='camera'
-                      backgroundColor='transparent'
-                      size={20}
-                      borderRadius={3}
-                      padding={0}
-                      height={30}
-                      width={40}
-                      marginRight={-10}
-                      justifyContent='center'
-                      onPress={() => {
-                        this.refs['setVehicalRegistration'].show();
-                      }}
-                    />
-                    <ActionSheet
-                  ref='setVehicalRegistration'
-                  // title={}
-                  options={options}
-                  cancelButtonIndex={CANCEL_INDEX}
-                  onPress={this.setVehicalRegistration}
-                />
+                  <View style={[styles.documentInnerContainer, { width: '85%', backgroundColor: 'powderblue' }]}>
+                    <View style={[styles.documentHeaderWrapper, {}]}>
+                      <Text style={[styles.headline, {}]}>Proof of Insurance</Text>
+                    </View>
+                    <View style={styles.documentImageWrapper}>
+                      {this.state.pathLicense === ''
+                        ? (
+                          <View style={styles.documentOverlayText}>
+                            <Text style={[styles.headline, { fontSize: 18, color: colors.colorWhite }]}>Documents Approval Pending</Text>
+                          </View>
+                        ) : (
+                          <Image style={[styles.vehicalInfoImages, { resizeMode: 'cover', borderBottomLeftRadius: 7, borderBottomRightRadius: 7 }]} source={{ uri: this.state.pathInsurance }} />
+                        )}
+                    </View>
+                    <View style={[styles.overlay, { borderBottomRightRadius: 7 }]}>
+                      <TouchableOpacity style={{ padding: 7 }} onPress={() => { this.refs['setProofInsurance'].show(); }}>
+                        <Image style={[commonStyle.icons, { marginRight: 0 }]} source={require('../../../../../images/camera.png')} />
+                      </TouchableOpacity>
+                      <ActionSheet
+                        ref='setProofInsurance'
+                        // title={}
+                        options={options}
+                        cancelButtonIndex={CANCEL_INDEX}
+                        onPress={this.setProofInsurance}
+                      />
+                    </View>
                   </View>
+                  <View style={[styles.documentInnerContainer, { width: '85%', backgroundColor: 'steelblue' }]}>
+                    <View style={[styles.documentHeaderWrapper, {}]}>
+                      <Text style={[styles.headline, {}]}>Vehical Registration</Text>
+                    </View>
+                    <View style={styles.documentImageWrapper}>
+                      {this.state.pathLicense === ''
+                        ? (
+                          <View style={styles.documentOverlayText}>
+                            <Text style={[styles.headline, { fontSize: 18, color: colors.colorWhite }]}>Documents Approval Pending</Text>
+                          </View>
+                        ) : (
+                          <Image style={[styles.vehicalInfoImages, { resizeMode: 'cover', borderBottomLeftRadius: 7, borderBottomRightRadius: 7 }]} source={{ uri: this.state.pathRegistration }} />
+                        )}
+                    </View>
+                    <View style={[styles.overlay, { borderBottomRightRadius: 7 }]}>
+                      <TouchableOpacity style={{ padding: 7 }} onPress={() => { this.refs['setVehicalRegistration'].show(); }}>
+                        <Image style={[commonStyle.icons, { marginRight: 0 }]} source={require('../../../../../images/camera.png')} />
+                      </TouchableOpacity>
+                      <ActionSheet
+                        ref='setVehicalRegistration'
+                        // title={}
+                        options={options}
+                        cancelButtonIndex={CANCEL_INDEX}
+                        onPress={this.setVehicalRegistration}
+                      />
+                    </View>
+                  </View>
+                  {/* <View style={{ width: commonFunctions.screenWidth(70, 0), height: 80, backgroundColor: 'powderblue', marginBottom: 10, borderRadius: 7 }}>
+                    <View style={[styles.textOverlay, { borderTopLeftRadius: 7, borderTopRightRadius: 7 }]}>
+                      <Text style={styles.headline}>Drivers License</Text>
+                    </View>
+                    {this.state.pathLicense === ''
+                      ? (
+                        <View style={styles.vehicalInfoContainer} />
+                      ) : (
+                        <View style={styles.vehicalInfoContainer}>
+                          <Image
+                            source={{ uri: this.state.pathLicense }}
+                            style={
+                              styles.vehicalInfoImages}
+                          />
+                        </View>
+                      )}
+                    <View style={[styles.overlay, { borderBottomRightRadius: 7 }]}>
+                      <TouchableOpacity style={{ padding: 7 }} onPress={() => { this.refs['setDriverLicense'].show(); }}>
+                        <Image style={[commonStyle.icons, { marginRight: 0 }]} source={require('../../../../../images/camera.png')} />
+                      </TouchableOpacity>
+                      <ActionSheet
+                        ref='setDriverLicense'
+                        // title={}
+                        options={options}
+                        cancelButtonIndex={CANCEL_INDEX}
+                        onPress={this.setDriverLicense}
+                      />
+                    </View>
+                  </View> */}
+                  {/* <View style={{ width: commonFunctions.screenWidth(70, 0), height: 80, backgroundColor: 'skyblue', marginBottom: 10, borderRadius: 7 }} >
+                    <View style={[styles.textOverlay, { borderTopLeftRadius: 7, borderTopRightRadius: 7 }]}>
+                      <Text style={styles.headline}>Proof of Insurance</Text>
+                    </View>
+                    {this.state.pathInsurance === ''
+                      ? (
+                        <View style={styles.vehicalInfoContainer} />
+                      ) : (
+                        <View style={styles.vehicalInfoContainer}>
+                          <Image
+                            source={{ uri: this.state.pathInsurance }}
+                            style={
+                              styles.vehicalInfoImages}
+                          />
+                        </View>
+                      )}
+                    <View style={[styles.overlay, { borderBottomRightRadius: 7 }]}>
+                      <TouchableOpacity style={{ padding: 7 }} onPress={() => { this.refs['setProofInsurance'].show(); }}>
+                        <Image style={[commonStyle.icons, { marginRight: 0 }]} source={require('../../../../../images/camera.png')} />
+                      </TouchableOpacity>
+                      <ActionSheet
+                        ref='setProofInsurance'
+                        // title={}
+                        options={options}
+                        cancelButtonIndex={CANCEL_INDEX}
+                        onPress={this.setProofInsurance}
+                      />
+                    </View>
+                  </View> */}
+                  {/* <View style={{ width: commonFunctions.screenWidth(70, 0), height: 80, backgroundColor: 'steelblue', borderRadius: 7 }} >
+                    <View style={[styles.textOverlay, { borderTopLeftRadius: 7, borderTopRightRadius: 7 }]}>
+                      <Text style={styles.headline}>Vehical Registration</Text>
+                    </View>
+                    {this.state.pathRegistration === ''
+                      ? (
+                        <View style={styles.vehicalInfoContainer}>
+                          <Text style={{ flex: 1, width: 200, height: 20, backgroundColor: 'red' }}>Document Aproval Pending</Text>
+                        </View>
+                      ) : (
+                        <View style={styles.vehicalInfoContainer}>
+                          <Image
+                            source={{ uri: this.state.pathRegistration }}
+                            style={
+                              styles.vehicalInfoImages}
+                          />
+                        </View>
+                      )}
+                    <View style={[styles.overlay, { borderBottomRightRadius: 7 }]}>
+                      <TouchableOpacity style={{ padding: 7 }} onPress={() => { this.refs['setVehicalRegistration'].show(); }}>
+                        <Image style={[commonStyle.icons, { marginRight: 0 }]} source={require('../../../../../images/camera.png')} />
+                      </TouchableOpacity>
+                      <ActionSheet
+                        ref='setVehicalRegistration'
+                        // title={}
+                        options={options}
+                        cancelButtonIndex={CANCEL_INDEX}
+                        onPress={this.setVehicalRegistration}
+                      />
+                    </View>
+                  </View> */}
                 </View>
               </View>
             </View>
           </View>
           <TouchableOpacity
-            style={[commonStyle.bgbutton, commonStyle.bgColorDarkPink, {marginTop: 50}]}
+            style={[commonStyle.bgbutton, commonStyle.bgColorDarkPink, { marginTop: 50 }]}
             onPress={() => {
               this.validateInput();
             }}
           >
             <Text style={styles.textLogin}>Submit</Text>
           </TouchableOpacity>
-          <View>
+          {/* <View>
             <Text
               style={styles.viewBottom}
             >
@@ -765,7 +770,7 @@ class EditProfileView extends Component {
                 {AllTexts.TermsConditionText}
               </Text>
             </Text>
-          </View>
+          </View> */}
         </KeyboardAwareScrollView>
       </View>
     );
@@ -788,15 +793,15 @@ const styles = StyleSheet.create({
   },
   userInputContainer: {
     justifyContent: 'center',
-    marginLeft: 0,
-    // marginRight: 10,
+    marginLeft: '2%',
+    marginRight: '2%',
     marginTop: Platform.OS === 'ios' ? 0 : 15,
-    flex: 0, width: commonFunctions.screenWidth(90, 0)
+    flex: 0
   },
   headline: {
     fontSize: 16,
     textAlign: 'center',
-    backgroundColor: 'rgba(0,0,0,0)',
+    fontFamily: Fonts.RobotoMedium,
     color: 'white'
   },
   documentContainer: {
@@ -812,7 +817,9 @@ const styles = StyleSheet.create({
     width: commonFunctions.screenWidth(94, 0)
   },
   textLogin: {
-    fontSize: 16, color: 'white'
+    fontSize: 16,
+    fontFamily: Fonts.RobotoMedium,
+    color: 'white'
   },
   Imgcontainer: {
     flex: 1,
@@ -875,12 +882,11 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'center',
-    paddingTop: 5,
+    // paddingTop: 10,
     paddingLeft: commonFunctions.screenWidth(10.9, 0),
     paddingRight: commonFunctions.screenWidth(10.9, 0),
-    paddingBottom: 5,
-    height: 90,
-    maxHeight: 90
+    // paddingBottom: 10,
+    height: 90
   },
   userProfile: {
     marginRight: 5,
@@ -952,6 +958,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   textInput: {
+    fontFamily: Fonts.RootoRegular,
     width: commonFunctions.screenWidth(100, 0),
     ...Platform.select({
       ios: {
@@ -963,6 +970,45 @@ const styles = StyleSheet.create({
         fontSize: 16
       }
     })
+  },
+  documentInnerContainer: {
+    width: '70%',
+    height: 80,
+    backgroundColor: 'transparent',
+    marginBottom: 10,
+    borderRadius: 7,
+    // borderWidth: 1,
+    // borderLeftWidth: 0,
+    // borderBottomWidth: 0,
+    // borderColor: '#242633',
+    // borderTopWidth: 0,
+    // shadowColor: '#000',
+    // shadowOffset: { width: 0, height: 2 },
+    // shadowOpacity: 1,
+    // shadowRadius: 7,
+    // elevation: 1,
+  },
+  documentHeaderWrapper: {
+    backgroundColor: '#F02948',
+    height: '30%',
+    borderTopLeftRadius: 7,
+    borderTopRightRadius: 7,
+  },
+  documentImageWrapper: {
+    position: 'relative',
+    height: '70%',
+    borderBottomLeftRadius: 7,
+    borderBottomRightRadius: 7,
+  },
+  documentOverlayText: {
+    position: 'absolute',
+    opacity: 0.8,
+    width: '100%',
+    height: '100%',
+    justifyContent: 'center',
+    backgroundColor: '#242633',
+    borderBottomLeftRadius: 7,
+    borderBottomRightRadius: 7
   }
 });
 
