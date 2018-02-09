@@ -75,7 +75,7 @@ class ForgotView extends Component {
         errorMessage: 'Please enter email.'
       });
     }
-    else if(!commonFunctions.validateEmail(this.state.usertext)){
+    else if (!commonFunctions.validateEmail(this.state.usertext)) {
       this.setState({
         isError: true,
         errorMessage: 'Please enter valid email.'

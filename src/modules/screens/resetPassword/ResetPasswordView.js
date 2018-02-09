@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { View, Text, StyleSheet, Image, Platform, TextInput, TouchableOpacity } from 'react-native';
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {View, Text, StyleSheet, Image, Platform, TextInput, TouchableOpacity} from 'react-native';
 import * as Auth from '../../../services/Auth';
 
 /* import common styles & functions */
 import * as commonStyle from '../../../theme/css/style';
 import * as commonFunctions from '../../../theme/js/CommonFunctions';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 
 class ResetPasswordView extends Component {
   /* set header options */
@@ -18,7 +18,7 @@ class ResetPasswordView extends Component {
     // tabBarOptions: {
     //   activeTintColor: '#e91e63'
     // },
-    tabBarIcon: ({ focused }) => (
+    tabBarIcon: ({focused}) => (
       <Image
         source={require('../../../../images/settings.png')}
         style={{
@@ -51,10 +51,10 @@ class ResetPasswordView extends Component {
         errorMessage: 'Password is too short, minimum is 6 characters.'
       });
     }
-    else if(this.state.usertext !== this.state.confirmText){
+    else if (this.state.usertext !== this.state.confirmText) {
       this.setState({
         isError: true,
-        errorMessage: "Confirm password doesn't match."
+        errorMessage: 'Confirm password doesn\'t match.'
       });
     }
     else {
@@ -78,8 +78,8 @@ class ResetPasswordView extends Component {
                 <Image style={styles.headerImage} source={require('../../../theme/images/logo-example.png')} />
               </View>
               {this.state.isError === true ? (
-                <View style={{ flexDirection: "row", marginTop: 15, marginBottom: 15 }}>
-                  <View style={{ width: 22 }}></View>
+                <View style={{flexDirection: 'row', marginTop: 15, marginBottom: 15}}>
+                  <View style={{width: 22}} />
                   <Text style={styles.validationText}>{this.state.errorMessage}</Text>
                 </View>) : (
                   <View style={styles.accountWrap}>
@@ -98,7 +98,7 @@ class ResetPasswordView extends Component {
                   <TextInput
                     ref='NewPasswordInput'
                     style={styles.textInput}
-                    onChangeText={usertext => this.setState({ usertext })}
+                    onChangeText={usertext => this.setState({usertext})}
                     autoCapitalize='none'
                     placeholder='New Password'
                     secureTextEntry={true}
@@ -109,7 +109,7 @@ class ResetPasswordView extends Component {
                       this.refs.ConfirmPasswordInput.focus();
                     }} />
                   {
-                    Platform.OS === 'ios' && (<View style={{ backgroundColor: commonStyle.colorWhite, height: 1 }} />)
+                    Platform.OS === 'ios' && (<View style={{backgroundColor: commonStyle.colorWhite, height: 1}} />)
                   }
                 </View>
               </View>
@@ -123,7 +123,7 @@ class ResetPasswordView extends Component {
                   <TextInput
                     ref='ConfirmPasswordInput'
                     style={styles.textInput}
-                    onChangeText={confirmText => this.setState({ confirmText })}
+                    onChangeText={confirmText => this.setState({confirmText})}
                     autoCapitalize='none'
                     placeholder='Confirm Password'
                     secureTextEntry={true}
@@ -134,15 +134,15 @@ class ResetPasswordView extends Component {
                     }}
                      />
                   {
-                    Platform.OS === 'ios' && (<View style={{ backgroundColor: commonStyle.colorWhite, height: 1 }} />)
+                    Platform.OS === 'ios' && (<View style={{backgroundColor: commonStyle.colorWhite, height: 1}} />)
                   }
                 </View>
               </View>
             </View>
           </View>
         </KeyboardAwareScrollView>
-        <TouchableOpacity onPress={() => this.submitOnPress()} style={[commonStyle.bgbutton, commonStyle.bgColorDarkPink, { marginBottom: 20 }]}>
-          <Text style={{ fontSize: 16, color: 'white' }}>Update</Text>
+        <TouchableOpacity onPress={() => this.submitOnPress()} style={[commonStyle.bgbutton, commonStyle.bgColorDarkPink, {marginBottom: 20}]}>
+          <Text style={{fontSize: 16, color: 'white'}}>Update</Text>
         </TouchableOpacity>
       </View>
     );
