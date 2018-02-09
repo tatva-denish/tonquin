@@ -17,10 +17,12 @@ class HistoryView extends Component {
     //   // inactiveBackgroundColor: '#FFFFFF',
     // },
     tabBarIcon: ({focused}) => (
-      <Image
-        source={require('../../../../images/btnHome.png')}
-        style={{tintColor: focused ? '#F13451' : '#2F313D'}}
-      />
+      <View style={{ width: 24, height: 23 }}>
+        <Image
+          source={require('../../../../images/pastDeliveries.png')}
+          style={{ tintColor: focused ? '#F13451' : '#2F313D', width: '100%', height: '100%' }}
+        />
+      </View>
     )
   });
 

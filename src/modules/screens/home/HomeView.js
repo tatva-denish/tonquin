@@ -8,6 +8,7 @@ import {
   TouchableOpacity
 } from 'react-native';
 import * as commonStyle from '../../../theme/css/style';
+import { Fonts, colors } from '../../../theme/css/common';
 import IconFeather from 'react-native-vector-icons/Feather';
 // import * as commonFunctions from '../../../theme/js/CommonFunctions';
 import { connect } from 'react-redux';
@@ -19,7 +20,9 @@ class HomeView extends Component {
   static navigationOptions = ({ navigation }) => ({
     // title: 'Home',
     headerTitle: (
-      <Image style={{ backgroundColor: 'transparent', alignSelf: 'center', width: '45%', height: '70%', marginLeft: 15, resizeMode: 'contain' }} source={require('../../../../images/logo-example.png')} />
+      <View style={{ alignItems: 'center', width: '100%', height: '55%', paddingLeft: 25, paddingRight: 10 }}>
+        <Image style={{ width: '100%', height: '100%', marginLeft: 15, resizeMode: 'contain' }} source={require('../../../../images/logo-example.png')} />
+      </View>
     ),
     // headerStyle: styles.HeaderContainer,
     tabBarLabel: null,
@@ -32,10 +35,12 @@ class HomeView extends Component {
       </TouchableOpacity>
     ),
     tabBarIcon: ({ focused }) => (
-      <Image
-        source={require('../../../../images/btnHome.png')}
-        style={{ tintColor: focused ? '#F13451' : '#2F313D' }}
-      />
+      <View style={{ width: 24, height: 23 }}>
+        <Image
+          source={require('../../../../images/home.png')}
+          style={{ tintColor: focused ? '#F13451' : '#2F313D', width: '100%', height: '100%' }}
+        />
+      </View>
     )
   });
 
@@ -88,14 +93,15 @@ class HomeView extends Component {
                   </View>
                 </View>
               </View>
-              <View style={styles.row_2}>
+              <View style={[styles.row_2, this.state.isDriverAvailable === false ? { backgroundColor: '#FFF' } : { backgroundColor: '#373A4C' }]}>
                 <View style={styles.row_1_container}>
                   <View style={styles.commonColumnStyle} >
                     <Text style={[styles.row_2_textStyle, { color: '#13BD71' }]}>$269</Text>
                   </View>
                   <View style={styles.commonColumnStyle} >
                     <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
-                      <IconFeather.Button
+                      <Image style={[commonStyle.icons, this.state.isDriverAvailable === false ? { tintColor: '#000' } : { tintColor: '#FFF' }]} source={require('../../../../images/clock.png')} />
+                      {/* <IconFeather.Button
                         name='clock'
                         iconStyle={[styles.icons]}
                         backgroundColor='transparent'
@@ -103,13 +109,14 @@ class HomeView extends Component {
                         padding={0}
                         margin={0}
                         color='#000'
-                      />
-                      <Text style={styles.row_2_textStyle}>63</Text>
+                      /> */}
+                      <Text style={[styles.row_2_textStyle, this.state.isDriverAvailable === false ? { color: '#000' } : { color: '#FFF' }]}>63</Text>
                     </View>
                   </View>
                   <View style={styles.commonColumnStyle} >
                     <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-around' }}>
-                      <IconFeather.Button
+                      <Image style={[commonStyle.icons, this.state.isDriverAvailable === false ? { tintColor: '#000' } : { tintColor: '#FFF' }]} source={require('../../../../images/totalDeliveries.png')} />
+                      {/* <IconFeather.Button
                         name='package'
                         iconStyle={[styles.icons]}
                         backgroundColor='transparent'
@@ -117,18 +124,24 @@ class HomeView extends Component {
                         padding={0}
                         margin={0}
                         color='#000'
-                      />
-                      <Text style={styles.row_2_textStyle}>4</Text>
+                      /> */}
+                      <Text style={[styles.row_2_textStyle, this.state.isDriverAvailable === false ? { color: '#000' } : { color: '#FFF' }]}>4</Text>
                     </View>
                   </View>
                 </View>
               </View>
-              <View style={styles.row_3}>
-                <Image style={{ backgroundColor: 'transparent', height: 245, width: 245 }} source={require('../../../../images/cardboard-box-icon.png')} />
+              <View style={[styles.row_3, this.state.isDriverAvailable === false ? { backgroundColor: '#FFF' } : { backgroundColor: '#373A4C' }]}>
+                <View style={{ width: 255, height: 245, paddingTop: 5 }}>
+                  {this.state.isDriverAvailable === false ?
+                    <Image style={{ backgroundColor: 'transparent', height: '100%', width: '100%', resizeMode: 'contain' }} source={require('../../../../images/driverAvailble.png')} />
+                    :
+                    <Image style={{ backgroundColor: 'transparent', height: '100%', width: '100%', resizeMode: 'contain' }} source={require('../../../../images/driverUnavailable.png')} />
+                  }
+                </View>
               </View>
-              <View style={styles.row_4}>
-                <TouchableOpacity style={[commonStyle.bgbutton, this.props.isDriverAvailable ? commonStyle.bgColorGreen : commonStyle.bgColorDarkPink]} onPress={() => this.onClickDriverIsAvailble()}>
-                  <Text style={{ fontSize: 16, color: 'white', fontWeight: '500' }}>Unavailable</Text>
+              <View style={[styles.row_4, this.state.isDriverAvailable === false ? { backgroundColor: '#FFF' } : { backgroundColor: '#373A4C' }]}>
+                <TouchableOpacity style={[commonStyle.bgbutton, this.state.isDriverAvailable === false ? commonStyle.bgColorDarkPink : commonStyle.bgColorGreen]} onPress={() => { this.onClickDriverIsAvailble(); }}>
+                  <Text style={{ fontSize: 16, color: 'white', fontFamily: Fonts.RobotoMedium }}>{this.state.isDriverAvailable === false ? 'Unavailable' : 'Available'}</Text>
                 </TouchableOpacity>
               </View>
             </View>
@@ -137,17 +150,18 @@ class HomeView extends Component {
             <View style={styles.bottomContainer}>
               <View style={styles.bottomCol1}>
                 <View>
-                  <IconFeather.Button
+                  <Image style={commonStyle.icons} source={require('../../../../images/calendar.png')} />
+                  {/* <IconFeather.Button
                     name='layers'
                     iconStyle={[styles.icons]}
                     backgroundColor='transparent'
                     size={22}
                     padding={0}
                     color='#FFF'
-                  />
+                  /> */}
                   <Text style={styles.overlayBadge}>4</Text>
                 </View>
-                <Text style={{ fontSize: 14, color: 'white' }}>Upcoming</Text>
+                <Text style={{ fontSize: 14, color: 'white', fontFamily: Fonts.RobotoRegular }}>Upcoming</Text>
               </View>
               <View style={styles.bottomCol2}>
                 <TouchableOpacity>
@@ -173,17 +187,18 @@ class HomeView extends Component {
               <View style={styles.bottomContainer}>
                 <View style={styles.bottomCol1}>
                   <View style={styles.iconContainer}>
-                    <IconFeather.Button
+                    <Image style={commonStyle.icons} source={require('../../../../images/calendar.png')} />
+                    {/* <IconFeather.Button
                       name='layers'
                       iconStyle={[styles.icons]}
                       backgroundColor='transparent'
                       size={22}
                       padding={0}
                       color='#FFF'
-                    />
+                    /> */}
                     <Text style={styles.overlayBadge}>4</Text>
                   </View>
-                  <Text style={{ fontSize: 14, color: 'white' }}>Upcoming</Text>
+                  <Text style={{ fontSize: 14, color: 'white', fontFamily: Fonts.RobotoRegular }}>Upcoming</Text>
                 </View>
                 <View style={styles.bottomCol2}>
                   <TouchableOpacity>
@@ -207,68 +222,68 @@ class HomeView extends Component {
                   <TouchableOpacity style={styles.upcomingWrapper} onPress={() => { this.openIncomingModalBox(true); }}>
                     <View style={{ backgroundColor: 'transparent', width: '15%', alignItems: 'center' }}>
                       <View style={styles.textWrapper}>
-                        <Text style={{ color: '#FFF' }}>1</Text>
+                        <Text style={{ color: '#FFF', fontFamily: Fonts.RobotoMedium, fontSize: 14 }}>1</Text>
                       </View>
                     </View>
                     <View style={{ backgroundColor: 'transparent', width: '85%' }}>
                       <View style={[styles.textWrapper, styles.textWrapperOverWrite]}>
-                        <Text style={{ color: '#FFF', fontWeight: '600', fontSize: 15 }}>Pickup</Text>
-                        <Text style={{ color: '#FFF', fontWeight: '600', fontSize: 14 }}>Today <Text style={{ color: '#FFF', fontWeight: '400', fontSize: 14 }}>12:35 PM</Text></Text>
+                        <Text style={{ color: '#FFF', fontSize: 14, fontFamily: Fonts.RobotoMedium }}>Pickup</Text>
+                        <Text style={{ color: '#FFF', fontSize: 12, fontFamily: Fonts.RobotoMedium }}>Today <Text style={{color: '#FFF', fontSize: 12, fontFamily: Fonts.RobotoRegular}}>12:35 PM</Text></Text>
                       </View>
                       <View style={{ justifyContent: 'center', backgroundColor: 'transparent', width: '95%', paddingTop: '2%', paddingLeft: '8%' }}>
-                        <Text style={{ color: '#FFF', fontSize: 18, fontWeight: '600' }}>Advance Auto Parts</Text>
-                        <Text style={{ color: '#FFF', fontSize: 18 }}>4227 S Salina St, Syracuse, NY</Text>
+                        <Text style={{ color: '#FFF', fontSize: 16, fontFamily: Fonts.RobotoRegular }}>Advance Auto Parts</Text>
+                        <Text style={{ color: '#FFF', fontSize: 16, fontFamily: Fonts.RobotoRegular }}>4227 S Salina St, Syracuse, NY</Text>
                       </View>
                     </View>
                   </TouchableOpacity>
                   <TouchableOpacity style={styles.upcomingWrapper} onPress={() => { this.openIncomingModalBox(true); }}>
                     <View style={{ backgroundColor: 'transparent', width: '15%', alignItems: 'center' }}>
                       <View style={styles.textWrapper}>
-                        <Text style={{ color: '#FFF' }}>2</Text>
+                        <Text style={{ color: '#FFF', fontFamily: Fonts.RobotoMedium, fontSize: 14 }}>2</Text>
                       </View>
                     </View>
                     <View style={{ backgroundColor: 'transparent', width: '85%' }}>
                       <View style={[styles.textWrapper, styles.textWrapperOverWrite, { backgroundColor: '#FFFFFF' }]}>
-                        <Text style={{ color: '#242633', fontWeight: '600', fontSize: 15 }}>Delivery</Text>
-                        <Text style={{ color: '#242633', fontWeight: '600', fontSize: 14 }}>Today <Text style={{ color: '#242633', fontWeight: '400', fontSize: 14 }}>12:35 PM</Text></Text>
+                        <Text style={{ color: '#242633', fontSize: 14, fontFamily: Fonts.RobotoMedium }}>Delivery</Text>
+                        <Text style={{ color: '#242633', fontSize: 12, fontFamily: Fonts.RobotoMedium }}>Today <Text style={{color: '#242633', fontSize: 12, fontFamily: Fonts.RobotoRegular}}>2:35 PM</Text></Text>
                       </View>
                       <View style={{ justifyContent: 'center', backgroundColor: 'transparent', width: '95%', paddingTop: '2%', paddingLeft: '8%' }}>
-                        <Text style={{ color: '#FFF', fontSize: 18, fontWeight: '600' }}>Advance Auto Parts</Text>
-                        <Text style={{ color: '#FFF', fontSize: 18 }}>4227 S Salina St, Syracuse, NY</Text>
+                        <Text style={{ color: '#FFF', fontSize: 16, fontFamily: Fonts.RobotoRegular }}>Advance Auto Parts</Text>
+                        <Text style={{ color: '#FFF', fontSize: 16, fontFamily: Fonts.RobotoRegular }}>4227 S Salina St, Syracuse, NY</Text>
                       </View>
                     </View>
                   </TouchableOpacity>
                   <TouchableOpacity style={styles.upcomingWrapper} onPress={() => { this.openIncomingModalBox(true); }}>
                     <View style={{ backgroundColor: 'transparent', width: '15%', alignItems: 'center' }}>
                       <View style={styles.textWrapper}>
-                        <Text style={{ color: '#FFF' }}>3</Text>
+                        <Text style={{ color: '#FFF', fontFamily: Fonts.RobotoMedium, fontSize: 14 }}>3</Text>
                       </View>
                     </View>
                     <View style={{ backgroundColor: 'transparent', width: '85%' }}>
                       <View style={[styles.textWrapper, styles.textWrapperOverWrite]}>
-                        <Text style={{ color: '#FFF', fontWeight: '600', fontSize: 15 }}>Pickup</Text>
-                        <Text style={{ color: '#FFF', fontWeight: '600', fontSize: 14 }}>Today <Text style={{ color: '#FFF', fontWeight: '400', fontSize: 14 }}>12:35 PM</Text></Text>
+                        <Text style={{ color: '#FFF', fontSize: 14, fontFamily: Fonts.RobotoMedium }}>Pickup</Text>
+                        <Text style={{ color: '#FFF', fontSize: 12, fontFamily: Fonts.RobotoMedium }}>Tomorrow <Text style={{color: '#FFF', fontSize: 12, fontFamily: Fonts.RobotoRegular}}>1:50 PM</Text></Text>
                       </View>
                       <View style={{ justifyContent: 'center', backgroundColor: 'transparent', width: '95%', paddingTop: '2%', paddingLeft: '8%' }}>
-                        <Text style={{ color: '#FFF', fontSize: 18, fontWeight: '600' }}>Advance Auto Parts</Text>
-                        <Text style={{ color: '#FFF', fontSize: 18 }}>4227 S Salina St, Syracuse, NY</Text>
+                        <Text style={{ color: '#FFF', fontSize: 16, fontFamily: Fonts.RobotoRegular }}>Advance Auto Parts</Text>
+                        <Text style={{ color: '#FFF', fontSize: 16, fontFamily: Fonts.RobotoRegular }}>4227 S Salina St, Syracuse, NY</Text>
                       </View>
                     </View>
                   </TouchableOpacity>
                   <TouchableOpacity style={styles.upcomingWrapper} onPress={() => { this.openIncomingModalBox(true); }}>
                     <View style={{ backgroundColor: 'transparent', width: '15%', alignItems: 'center' }}>
                       <View style={styles.textWrapper}>
-                        <Text style={{ color: '#FFF' }}>4</Text>
+                        <Text style={{ color: '#FFF', fontFamily: Fonts.RobotoMedium, fontSize: 14 }}>4</Text>
                       </View>
                     </View>
                     <View style={{ backgroundColor: 'transparent', width: '85%' }}>
                       <View style={[styles.textWrapper, styles.textWrapperOverWrite]}>
-                        <Text style={{ color: '#FFF', fontWeight: '600', fontSize: 15 }}>Pickup</Text>
-                        <Text style={{ color: '#FFF', fontWeight: '600', fontSize: 14 }}>Today <Text style={{ color: '#FFF', fontWeight: '400', fontSize: 14 }}>12:35 PM</Text></Text>
+                        <Text style={{ color: '#FFF', fontSize: 14, fontFamily: Fonts.RobotoMedium }}>Pickup</Text>
+                        <Text style={{ color: '#FFF', fontSize: 12, fontFamily: Fonts.RobotoMedium }}>Tomorrow <Text style={{color: '#FFF', fontSize: 12, fontFamily: Fonts.RobotoRegular}}>2:35 PM</Text></Text>
                       </View>
                       <View style={{ justifyContent: 'center', backgroundColor: 'transparent', width: '95%', paddingTop: '2%', paddingLeft: '8%' }}>
-                        <Text style={{ color: '#FFF', fontSize: 18, fontWeight: '600' }}>Advance Auto Parts</Text>
-                        <Text style={{ color: '#FFF', fontSize: 18 }}>4227 S Salina St, Syracuse, NY</Text>
+                        <Text style={{ color: '#FFF', fontSize: 16, fontFamily: Fonts.RobotoRegular }}>Advance Auto Parts</Text>
+                        <Text style={{ color: '#FFF', fontSize: 16, fontFamily: Fonts.RobotoRegular }}>4227 S Salina St, Syracuse, NY</Text>
                       </View>
                     </View>
                   </TouchableOpacity>
@@ -376,13 +391,15 @@ const styles = StyleSheet.create({
     position: 'absolute',
     textAlign: 'center',
     backgroundColor: '#F02948',
+    padding: 1,
     borderRadius: 50,
-    width: 15,
-    height: 15,
+    width: 16,
+    height: 16,
     color: '#FFFFFF',
-    right: 5,
-    top: -5,
-    fontSize: 10
+    right: 7,
+    top: -7,
+    fontSize: 9,
+    fontFamily: Fonts.RobotoMedium
   },
   row_1: {
     alignItems: 'center',
@@ -396,7 +413,7 @@ const styles = StyleSheet.create({
   },
   row_3: {
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     height: '63%',
     backgroundColor: '#FFFFFF'
   },
@@ -409,7 +426,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
-    width: '85%',
+    width: '95%',
     height: '100%'
   },
   commonColumnStyle: {
@@ -420,15 +437,15 @@ const styles = StyleSheet.create({
   },
   row_1_textStyle: {
     color: '#FFFFFF',
-    fontSize: 11,
-    fontWeight: 'bold',
+    fontSize: 12,
+    fontFamily: Fonts.RobotoMedium,
     textAlign: 'center'
   },
   row_2_textStyle: {
     color: '#242633',
-    fontSize: 24,
-    fontWeight: '500',
-    textAlign: 'center'
+    fontSize: 26,
+    fontFamily: Fonts.RobotoMedium,
+    textAlign: 'center',
   },
   icons: {
     alignSelf: 'center'

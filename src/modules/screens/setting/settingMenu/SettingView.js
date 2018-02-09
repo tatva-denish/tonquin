@@ -1,5 +1,5 @@
 //import liraries
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import {
   View,
   Text,
@@ -13,7 +13,7 @@ import {
 import * as Auth from '../../../../services/Auth';
 // import * as commonFunctions from '../../../../theme/js/CommonFunctions';
 import * as commonStyle from '../../../../theme/css/style';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 
 var deviceWidth = Dimensions.get('window').width;
 var deviceHeight = Dimensions.get('window').height;
@@ -23,11 +23,11 @@ class SettingView extends Component {
     super();
     this.state = {
       settings: [
-        {key: 'Edit Profile'},
-        {key: 'Change Password'},
-        {key: 'Edit Payout Details'},
-        {key: 'Privacy Policy'},
-        {key: 'Terms & Conditions'}
+        { key: 'Edit Profile' },
+        { key: 'Change Password' },
+        { key: 'Edit Payout Details' },
+        { key: 'Privacy Policy' },
+        { key: 'Terms & Conditions' }
       ]
     };
   }
@@ -35,13 +35,13 @@ class SettingView extends Component {
     title: 'Settings',
     tabBarLabel: null,
     gesturesEnabled: false,
-    tabBarIcon: ({focused}) => (
-      <Image
-        source={require('../../../../../images/settings.png')}
-        style={{
-          tintColor: focused ? '#F13451' : '#2F313D'
-        }}
-      />
+    tabBarIcon: ({ focused }) => (
+      <View style={{ width: 24, height: 23 }}>
+        <Image
+          source={require('../../../../../images/settings.png')}
+          style={{ tintColor: focused ? '#F13451' : '#2F313D', width: '100%', height: '100%' }}
+        />
+      </View>
     )
   });
 
@@ -91,7 +91,7 @@ class SettingView extends Component {
           <FlatList
             data={this.state.settings}
             ItemSeparatorComponent={this.FlatListItemSeparator}
-            renderItem={({item}) => (
+            renderItem={({ item }) => (
               <View style={styles.innerContainer}>
                 <Text
                   style={styles.item}
@@ -111,13 +111,13 @@ class SettingView extends Component {
           style={[
             commonStyle.bgbutton,
             commonStyle.bgColorDarkPink,
-            {position: 'absolute'}
+            { position: 'absolute' }
           ]}
           onPress={() => {
             this.logoutAction();
           }}
         >
-          <Text style={{fontSize: 16, color: 'white'}}>Logout</Text>
+          <Text style={{ fontSize: 16, color: 'white' }}>Logout</Text>
         </TouchableOpacity>
         {Platform.OS === 'ios' ? (
           <Text
@@ -133,19 +133,19 @@ class SettingView extends Component {
             {/* Version : 1.0.3(8)(8) */}
           </Text>
         ) : (
-          <Text
-            style={{
-              // fontFamily: Fonts.LatoRegular,
-              // color: Colors.grayColor,
-              fontSize: 10,
-              position: 'absolute',
-              bottom: 5,
-              alignSelf: 'center'
-            }}
-          >
-            {/* Version : 1.0.18 */}
-          </Text>
-        )}
+            <Text
+              style={{
+                // fontFamily: Fonts.LatoRegular,
+                // color: Colors.grayColor,
+                fontSize: 10,
+                position: 'absolute',
+                bottom: 5,
+                alignSelf: 'center'
+              }}
+            >
+              {/* Version : 1.0.18 */}
+            </Text>
+          )}
       </View>
     );
   }

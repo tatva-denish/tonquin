@@ -13,7 +13,7 @@ export const colors = {
   colorDoveGrey: '#666666',
   colorBlue: '#5DA5ED',
   colorBlack: '#000000',
-  colorGreen: '#23C164',
+  colorGreen: '#13BD71',
   colorLightBlue: '#3B8BFF',
   colorDodgerBlue: '#1071FF',
   colorSeashellGrey: '#F1F1F1',
