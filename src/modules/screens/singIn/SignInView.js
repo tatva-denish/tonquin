@@ -7,7 +7,8 @@ import {
   TouchableOpacity,
   Platform,
   Image,
-  TextInput
+  TextInput,
+  KeyboardAvoidingView
   // Alert
 } from 'react-native';
 import * as commonFunctions from '../../../theme/js/CommonFunctions';
@@ -72,142 +73,276 @@ class SignInView extends Component {
     }
   }
 
+  designForIos() {
+    return (
+      <KeyboardAvoidingView
+        behavior='padding'
+        style={[commonStyle.container, styles.masterView]}
+      >
+        {/* <Spinner visible={this.props.loading} /> */}
+        <View style={[styles.container]}>
+          {/* Header Text */}
+          <Image
+            style={styles.headerImage}
+            source={require('../../../../images/logo-example.png')}
+          />
+          {this.state.isError && (
+            <View style={{paddingTop: 5}}>
+              <Text
+                style={[
+                  {
+                    fontSize: 12,
+                    color: '#E8284D',
+                    textAlign: 'center',
+                    // fontFamily: Fonts.LatoRegular,
+                    justifyContent: 'center'
+                  }
+                ]}
+              >
+                {this.state.errorMessage}
+              </Text>
+            </View>
+          )}
+          {/* Create main View for User Textfiled */}
+          <View style={[commonStyle.container, styles.innerView]}>
+            <View style={styles.EmailView}>
+              <Image
+                style={styles.icons}
+                source={require('../../../../images/textEmailIcon.png')}
+              />
+              <View style={styles.textInputView}>
+                {/* Create textfiled for enter user name */}
+
+                <TextInput
+                  style={styles.textInput}
+                  autoCapitalize='none'
+                  onChangeText={loginUser => this.setState({loginUser})}
+                  placeholder='Email'
+                  value={this.state.loginUser}
+                  returnKeyType='next'
+                  underlineColorAndroid='#D3D3D3'
+                  onSubmitEditing={() => this.refs.PasswordInput.focus()}
+                />
+                {/* Hairline added below textfiled using View */}
+                {Platform.OS === 'ios' && (
+                  <View
+                    style={{
+                      backgroundColor: commonStyle.colorGrey,
+                      height: 2
+                    }}
+                  />
+                )}
+              </View>
+            </View>
+
+            {/* Password creation */}
+            <View style={styles.viewPassword}>
+              <Image
+                style={styles.icons}
+                source={require('../../../../images/PasswordIcon.png')}
+              />
+              <View style={styles.textInputView}>
+                {/* Create textfiled for enter user name */}
+                <TextInput
+                  ref='PasswordInput'
+                  style={styles.textInput}
+                  autoCapitalize='none'
+                  onChangeText={loginPassword =>
+                    this.setState({loginPassword})
+                  }
+                  placeholder='Password'
+                  secureTextEntry={true}
+                  value={this.state.loginPassword}
+                  returnKeyType='go'
+                  underlineColorAndroid='#D3D3D3'
+                />
+                {/* Hairline added below textfiled using View */}
+                {Platform.OS === 'ios' && (
+                  <View
+                    style={{
+                      backgroundColor: commonStyle.colorWhite,
+                      height: 1
+                    }}
+                  />
+                )}
+              </View>
+            </View>
+
+            {/* forgot password */}
+            <View style={styles.viewForgotPassword}>
+              {/* Create textfiled for enter user name */}
+              <TouchableOpacity onPress={() => this.onForgotPasswordEvent()}>
+                <Text
+                  style={[commonStyle.headerText, styles.textForgotPassword]}
+                >
+                  Forgot Password?
+                </Text>
+              </TouchableOpacity>
+            </View>
+
+            {/* Bottom Text */}
+            {/* </View> */}
+          </View>
+        </View>
+        <View>
+          <TouchableOpacity
+            style={[commonStyle.bgbutton, commonStyle.bgColorDarkPink]}
+            onPress={() => {
+              this.validateInput();
+            }}
+          >
+            <Text style={styles.textLogin}>Login</Text>
+          </TouchableOpacity>
+        </View>
+      </KeyboardAvoidingView>
+    );
+  }
+
+  designForAndroid() {
+    return (
+      <KeyboardAwareScrollView extraHeight={0}>
+        {/* <Spinner visible={this.props.loading} /> */}
+        <View style={[styles.container, styles.masterView]}>
+          {/* Header Text */}
+
+          {/* Create main View for User Textfiled */}
+          <View style={[commonStyle.container, styles.container]}>
+            <Image
+              style={styles.headerImage}
+              source={require('../../../../images/logo-example.png')}
+            />
+            <View style={styles.accountWrap}>
+              {this.state.isError && (
+                <View style={{padding: 5}}>
+                  <Text
+                    style={[
+                      {
+                        fontSize: 12,
+                        color: '#E8284D',
+                        textAlign: 'center',
+                        // fontFamily: Fonts.LatoRegular,
+                        justifyContent: 'center'
+                      }
+                    ]}
+                  >
+                    {this.state.errorMessage}
+                  </Text>
+                </View>
+              )}
+            </View>
+            <View style={styles.EmailView}>
+              <Image
+                style={styles.icons}
+                source={require('../../../../images/textEmailIcon.png')}
+              />
+              <View style={styles.textInputView}>
+                {/* Create textfiled for enter user name */}
+
+                <TextInput
+                  style={styles.textInput}
+                  autoCapitalize='none'
+                  onChangeText={loginUser => this.setState({loginUser})}
+                  placeholder='Username or Email Address'
+                  value={this.state.loginUser}
+                  returnKeyType='next'
+                  underlineColorAndroid='#D3D3D3'
+                  onSubmitEditing={() => this.refs.PasswordInput.focus()}
+                />
+                {/* Hairline added below textfiled using View */}
+                {Platform.OS === 'ios' && (
+                  <View
+                    style={{
+                      backgroundColor: commonStyle.colorGrey,
+                      height: 2
+                    }}
+                  />
+                )}
+              </View>
+            </View>
+
+            {/* Password creation */}
+            <View style={styles.viewPassword}>
+              <Image
+                style={styles.icons}
+                source={require('../../../../images/PasswordIcon.png')}
+              />
+              <View style={styles.textInputView}>
+                {/* Create textfiled for enter user name */}
+                <TextInput
+                  ref='PasswordInput'
+                  style={styles.textInput}
+                  autoCapitalize='none'
+                  onChangeText={loginPassword =>
+                    this.setState({loginPassword})
+                  }
+                  placeholder='Password'
+                  secureTextEntry={true}
+                  value={this.state.loginPassword}
+                  returnKeyType='go'
+                  underlineColorAndroid='#D3D3D3'
+                />
+                {/* Hairline added below textfiled using View */}
+                {Platform.OS === 'ios' && (
+                  <View
+                    style={{
+                      backgroundColor: commonStyle.colorWhite,
+                      height: 1
+                    }}
+                  />
+                )}
+              </View>
+            </View>
+
+            {/* forgot password */}
+            <View style={styles.viewForgotPassword}>
+              {/* Create textfiled for enter user name */}
+              <TouchableOpacity onPress={() => this.onForgotPasswordEvent()}>
+                <Text
+                  style={[commonStyle.headerText, styles.textForgotPassword]}
+                >
+                  Forgot Password?
+                </Text>
+              </TouchableOpacity>
+            </View>
+
+            {/* Bottom Text */}
+          </View>
+        </View>
+      </KeyboardAwareScrollView>
+    );
+  }
+
   render() {
     return (
-      <View style={commonStyle.container}>
-        <KeyboardAwareScrollView extraHeight={0}>
-          {/* <Spinner visible={this.props.loading} /> */}
-          <View style={[styles.container]}>
-            {/* Header Text */}
-
-            {/* Create main View for User Textfiled */}
-            <View style={[commonStyle.container, styles.container]}>
-              <Image
-                style={styles.headerImage}
-                source={require('../../../../images/logo-example.png')}
-              />
-              <View style={styles.accountWrap}>
-                {this.state.isError && (
-                  <View style={{padding: 5}}>
-                    <Text
-                      style={[
-                        {
-                          fontSize: 12,
-                          color: '#E8284D',
-                          textAlign: 'center',
-                          // fontFamily: Fonts.LatoRegular,
-                          justifyContent: 'center'
-                        }
-                      ]}
-                    >
-                      {this.state.errorMessage}
-                    </Text>
-                  </View>
-                )}
-                {/* <Text style={styles.accountText}>New User? </Text>
-                <Text style={styles.accountText}>Tap </Text>
-                <TouchableOpacity onPress={() => this.onSignUpEvent()}>
-                  <Text style={[commonStyle.colorDarkPink, styles.accountText]}>
-                    Here
-                  </Text>
-                </TouchableOpacity>
-                <Text style={styles.accountText}> to Sign Up.</Text> */}
-              </View>
-              <View style={styles.horizontal}>
-                <Image
-                  style={styles.icons}
-                  source={require('../../../../images/UserIcon.png')}
-                />
-                <View style={styles.textInputView}>
-                  {/* Create textfiled for enter user name */}
-
-                  <TextInput
-                    style={styles.textInput}
-                    autoCapitalize='none'
-                    onChangeText={loginUser => this.setState({loginUser})}
-                    placeholder='Username or Email Address'
-                    value={this.state.loginUser}
-                    returnKeyType='next'
-                    underlineColorAndroid='#D3D3D3'
-                    onSubmitEditing={() => this.refs.PasswordInput.focus()}
-                  />
-                  {/* Hairline added below textfiled using View */}
-                  {Platform.OS === 'ios' && (
-                    <View
-                      style={{
-                        backgroundColor: commonStyle.colorGrey,
-                        height: 2
-                      }}
-                    />
-                  )}
-                </View>
-              </View>
-
-              {/* Password creation */}
-              <View style={styles.viewPasswordIcon}>
-                <Image
-                  style={styles.icons}
-                  source={require('../../../../images/PasswordIcon.png')}
-                />
-                <View style={styles.textInputView}>
-                  {/* Create textfiled for enter user name */}
-                  <TextInput
-                    ref='PasswordInput'
-                    style={styles.textInput}
-                    autoCapitalize='none'
-                    onChangeText={loginPassword =>
-                      this.setState({loginPassword})
-                    }
-                    placeholder='Password'
-                    secureTextEntry={true}
-                    value={this.state.loginPassword}
-                    returnKeyType='go'
-                    underlineColorAndroid='#D3D3D3'
-                  />
-                  {/* Hairline added below textfiled using View */}
-                  {Platform.OS === 'ios' && (
-                    <View
-                      style={{
-                        backgroundColor: commonStyle.colorWhite,
-                        height: 1
-                      }}
-                    />
-                  )}
-                </View>
-              </View>
-
-              {/* forgot password */}
-              <View style={styles.viewForgotPassword}>
-                {/* Create textfiled for enter user name */}
-                <TouchableOpacity onPress={() => this.onForgotPasswordEvent()}>
-                  <Text
-                    style={[commonStyle.headerText, styles.textForgotPassword]}
-                  >
-                    Forgot Password?
-                  </Text>
-                </TouchableOpacity>
-              </View>
-
-              {/* Bottom Text */}
-            </View>
+      <View style={[styles.container]}>
+        {Platform.OS === 'ios' ? this.designForIos() : this.designForAndroid()}
+        {Platform.OS === 'ios' ? (
+          <View
+            style={{
+              height: 50,
+              backgroundColor: '#ffffff',
+              justifyContent: 'center'
+            }}
+          />
+        ) : (
+          <View>
+            <TouchableOpacity
+              style={[commonStyle.bgbutton, commonStyle.bgColorDarkPink]}
+              onPress={() => {
+                this.validateInput();
+              }}
+            >
+              <Text style={styles.textLogin}>Login</Text>
+            </TouchableOpacity>
+            <View
+              style={{
+                height: 50,
+                backgroundColor: '#ffffff',
+                justifyContent: 'center'
+              }}
+            />
           </View>
-        </KeyboardAwareScrollView>
-        <TouchableOpacity
-          style={[commonStyle.bgbutton, commonStyle.bgColorDarkPink]}
-          onPress={() => {
-            this.validateInput();
-          }}
-        >
-          <Text style={styles.textLogin}>Login</Text>
-        </TouchableOpacity>
-        {/* <View>
-          <Text style={styles.viewBottom}>
-            {AllTexts.SignInBottomText}{' '}
-            <Text style={[commonStyle.headerText, styles.textBottom]}>
-              {AllTexts.TermsConditionText}
-            </Text>
-          </Text>
-        </View> */}
+        )}
       </View>
     );
   }
@@ -218,18 +353,30 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
+    backgroundColor: '#ffffff'
+  },
+  masterView: {
+    marginLeft: 10,
+    marginRight: 10
+  },
+  innerView: {
     marginLeft: 10,
     marginRight: 10,
-    backgroundColor: 'transparent'
+    // backgroundColor: 'yellow',
+    justifyContent: 'center',
+    marginBottom: 80
   },
-  horizontal: {
-    flexDirection: 'row'
+  EmailView: {
+    flexDirection: 'row',
+    marginBottom: 10
   },
   headerImage: {
+    flexDirection: 'row',
     alignSelf: 'center',
-    // backgroundColor: 'transparent',
-    height: commonFunctions.screenHeight(12, 0),
-    width: commonFunctions.screenWidth(78, 0)
+    resizeMode: 'contain',
+    marginTop: 100,
+    width: commonFunctions.screenWidth(75, 0),
+    height: commonFunctions.screenHeight(15, 0)
   },
   icons: {
     alignSelf: 'center',
@@ -250,7 +397,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: '200'
   },
-  viewPasswordIcon: {
+  viewPassword: {
     flexDirection: 'row',
     paddingTop: 20
   },

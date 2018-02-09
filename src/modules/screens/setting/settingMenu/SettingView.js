@@ -77,8 +77,8 @@ class SettingView extends Component {
     return (
       <View
         style={{
-          height: 1,
-          backgroundColor: '#607D8B'
+          height: 0
+          // backgroundColor: '#979797'
         }}
       />
     );
@@ -87,17 +87,12 @@ class SettingView extends Component {
   render() {
     return (
       <View style={styles.containerView}>
-        <View
-          style={{
-            justifyContent: 'center',
-            flex: 1
-          }}
-        >
+        <View style={styles.wrapper}>
           <FlatList
             data={this.state.settings}
             ItemSeparatorComponent={this.FlatListItemSeparator}
             renderItem={({item}) => (
-              <View style={{marginTop: 12}}>
+              <View style={styles.innerContainer}>
                 <Text
                   style={styles.item}
                   onPress={this.alertItemName.bind(this, item.key)}
@@ -161,6 +156,17 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#FFFFFF'
   },
+  wrapper: {
+    justifyContent: 'center',
+    flex: 1
+  },
+  innerContainer: {
+    padding: 12,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    borderBottomWidth: 1,
+    borderBottomColor: '#979797'
+  },
   cellView: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -168,8 +174,8 @@ const styles = StyleSheet.create({
   },
   item: {
     paddingLeft: 10,
-    fontSize: 15,
-    height: 32
+    fontSize: 15
+    // height: 44
   },
   separator: {
     flex: 1,
@@ -183,12 +189,11 @@ const styles = StyleSheet.create({
     color: '#232323'
   },
   image: {
-    resizeMode: 'center',
-    position: 'absolute',
-    right: 10,
-    top: -5,
-    height: 30,
-    width: 30
+    resizeMode: 'center'
+    // position: 'absolute',
+    // right: 10,
+    // height: 30,
+    // width: 30
   },
   logoutView: {
     alignItems: 'center',

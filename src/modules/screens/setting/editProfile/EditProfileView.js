@@ -1,5 +1,5 @@
 //import liraries
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import {
   View,
   StyleSheet,
@@ -9,16 +9,16 @@ import {
   TextInput,
   Platform
 } from 'react-native';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 import ActionSheet from 'react-native-actionsheet';
 import ImagePicker from 'react-native-image-crop-picker';
 import IconFeather from 'react-native-vector-icons/Feather';
 /* Common Styles & Functions */
 import * as commonStyle from '../../../../theme/css/style';
-import { AllTexts, Fonts, colors } from '../../../../theme/css/common';
+import {Fonts, colors} from '../../../../theme/css/common';
 import * as commonFunctions from '../../../../theme/js/CommonFunctions';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import { Dropdown } from 'react-native-material-dropdown';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import {Dropdown} from 'react-native-material-dropdown';
 /* Set screen width */
 const CANCEL_INDEX = 0;
 
@@ -27,7 +27,7 @@ const options = ['Cancel', 'Take a Photo', 'Take From Gallery'];
 
 // create a component
 class EditProfileView extends Component {
-  static navigationOptions = ({ navigation }) => ({
+  static navigationOptions = () => ({
     title: 'Edit Profile',
     tabBarLabel: null,
     gesturesEnabled: true,
@@ -52,7 +52,7 @@ class EditProfileView extends Component {
     //   </TouchableOpacity>
     // ),
 
-    tabBarIcon: ({ focused }) => (
+    tabBarIcon: ({focused}) => (
       <Image
         source={require('../../../../../images/settings.png')}
         style={{
@@ -74,10 +74,10 @@ class EditProfileView extends Component {
       vehicalType: '',
       vehicalMake: '',
       vehicalModel: '',
-      statesArray: [{ value: 'Gujarat' }, { value: 'Maharashtra' }, { value: 'Goa' }],
-      vehicalTypeArray: [{ value: 'Type 1' }, { value: 'Type 2' }, { value: 'Type 3' }],
-      vehicalMakeArray: [{ value: 'Make 1' }, { value: 'Make 2' }, { value: 'Make 3' }],
-      vehicalModelArray: [{ value: 'Model 1' }, { value: 'Model 2' }, { value: 'Model 3' }]
+      statesArray: [{value: 'Gujarat'}, {value: 'Maharashtra'}, {value: 'Goa'}],
+      vehicalTypeArray: [{value: 'Type 1'}, {value: 'Type 2'}, {value: 'Type 3'}],
+      vehicalMakeArray: [{value: 'Make 1'}, {value: 'Make 2'}, {value: 'Make 3'}],
+      vehicalModelArray: [{value: 'Model 1'}, {value: 'Model 2'}, {value: 'Model 3'}]
     };
 
     this.setUserProfile = this.setUserProfile.bind(this);
@@ -256,7 +256,7 @@ class EditProfileView extends Component {
     return (
       <View style={commonStyle.container}>
         <KeyboardAwareScrollView extraHeight={0}>
-          <View style={[styles.topContainerView, { marginTop: 25 }]}>
+          <View style={[styles.topContainerView, {marginTop: 25}]}>
             <View style={[styles.wrapper, {}]}>
               <View style={styles.userProfile}>
                 <TouchableOpacity
@@ -276,7 +276,7 @@ class EditProfileView extends Component {
                     ) : (
                       <View style={styles.backgroundContainer}>
                         <Image
-                          source={{ uri: this.state.pathProfile }}
+                          source={{uri: this.state.pathProfile}}
                           style={
                             styles.backdrop}
                         />
@@ -325,7 +325,7 @@ class EditProfileView extends Component {
                     ) : (
                       <View style={styles.backgroundContainer}>
                         <Image
-                          source={{ uri: this.state.vehicalPath }}
+                          source={{uri: this.state.vehicalPath}}
                           style={
                             styles.backdrop}
                         />
@@ -368,8 +368,8 @@ class EditProfileView extends Component {
                   size={22}
                   color='#000'
                 /> */}
-                <View style={{ justifyContent: 'center' }}>
-                  <Image style={[commonStyle.icons, { marginRight: 10 }]} source={require('../../../../../images/user.png')} />
+                <View style={{justifyContent: 'center'}}>
+                  <Image style={[commonStyle.icons, {marginRight: 10}]} source={require('../../../../../images/user.png')} />
                 </View>
                 <View style={[styles.textInputView, {}]}>
                   {/* Create textfiled for enter user name */}
@@ -399,8 +399,8 @@ class EditProfileView extends Component {
               </View>
               {/* Email input */}
               <View style={[styles.horizontal]}>
-                <View style={{ justifyContent: 'center' }}>
-                  <Image style={[commonStyle.icons, { marginRight: 10 }]} source={require('../../../../../images/mail.png')} />
+                <View style={{justifyContent: 'center'}}>
+                  <Image style={[commonStyle.icons, {marginRight: 10}]} source={require('../../../../../images/mail.png')} />
                 </View>
                 <View style={styles.textInputView}>
                   {/* Create textfiled for enter user name */}
@@ -430,8 +430,8 @@ class EditProfileView extends Component {
               </View>
               {/* Phone input */}
               <View style={styles.horizontal}>
-                <View style={{ justifyContent: 'center' }}>
-                  <Image style={[commonStyle.icons, { marginRight: 10 }]} source={require('../../../../../images/phoneBlack.png')} />
+                <View style={{justifyContent: 'center'}}>
+                  <Image style={[commonStyle.icons, {marginRight: 10}]} source={require('../../../../../images/phoneBlack.png')} />
                 </View>
                 <View style={[styles.textInputView, {}]}>
                   {/* Create textfiled for enter user name */}
@@ -461,8 +461,8 @@ class EditProfileView extends Component {
               </View>
               {/* City input */}
               <View style={styles.horizontal}>
-                <View style={{ justifyContent: 'center' }}>
-                  <Image style={[commonStyle.icons, { marginRight: 14 }]} source={require('../../../../../images/global.png')} />
+                <View style={{justifyContent: 'center'}}>
+                  <Image style={[commonStyle.icons, {marginRight: 14}]} source={require('../../../../../images/global.png')} />
                 </View>
                 <View style={[styles.textInputView, {}]}>
                   {/* Create textfiled for enter user name */}
@@ -505,13 +505,13 @@ class EditProfileView extends Component {
                       marginTop: -17,
                       marginLeft: 30
                     }}
-                    onChangeText={value => this.setState({ states: value })}
+                    onChangeText={value => this.setState({states: value})}
                   />
                 </View>
               </View>
               <View style={[styles.horizontal]}>
-                <View style={{ justifyContent: 'center' }}>
-                  <Image style={[commonStyle.icons, { marginRight: 10 }]} source={require('../../../../../images/truck.png')} />
+                <View style={{justifyContent: 'center'}}>
+                  <Image style={[commonStyle.icons, {marginRight: 10}]} source={require('../../../../../images/truck.png')} />
                 </View>
                 <View style={[styles.textInputView, {}]}>
                   <Dropdown
@@ -527,7 +527,7 @@ class EditProfileView extends Component {
                       paddingLeft: 5,
                       marginTop: -11
                     }}
-                    onChangeText={value => this.setState({ vehicalType: value })}
+                    onChangeText={value => this.setState({vehicalType: value})}
                   />
                 </View>
               </View>
@@ -546,7 +546,7 @@ class EditProfileView extends Component {
                       marginTop: -17,
                       marginLeft: 30
                     }}
-                    onChangeText={value => this.setState({ vehicalMake: value })}
+                    onChangeText={value => this.setState({vehicalMake: value})}
                   />
                 </View>
               </View>
@@ -565,16 +565,16 @@ class EditProfileView extends Component {
                       marginTop: -17,
                       marginLeft: 30
                     }}
-                    onChangeText={value => this.setState({ vehicalModel: value })}
+                    onChangeText={value => this.setState({vehicalModel: value})}
                   />
                 </View>
               </View>
-              <View style={[styles.horizontal, { marginTop: 20 }]}>
-                <View style={{ justifyContent: 'flex-start' }}>
-                  <Image style={[commonStyle.icons, { marginRight: 10 }]} source={require('../../../../../images/document.png')} />
+              <View style={[styles.horizontal, {marginTop: 20}]}>
+                <View style={{justifyContent: 'flex-start'}}>
+                  <Image style={[commonStyle.icons, {marginRight: 10}]} source={require('../../../../../images/document.png')} />
                 </View>
-                <View style={[styles.documentContainer, { marginLeft: 10 }]}>
-                  <View style={[styles.documentInnerContainer, { width: '85%', backgroundColor: 'skyblue' }]}>
+                <View style={[styles.documentContainer, {marginLeft: 10}]}>
+                  <View style={[styles.documentInnerContainer, {width: '85%', backgroundColor: 'skyblue'}]}>
                     <View style={[styles.documentHeaderWrapper, {}]}>
                       <Text style={[styles.headline, {}]}>Drivers License</Text>
                     </View>
@@ -582,15 +582,15 @@ class EditProfileView extends Component {
                       {this.state.pathLicense === ''
                         ? (
                           <View style={styles.documentOverlayText}>
-                            <Text style={[styles.headline, { fontSize: 18, color: colors.colorWhite }]}>Documents Approval Pending</Text>
+                            <Text style={[styles.headline, {fontSize: 18, color: colors.colorWhite}]}>Documents Approval Pending</Text>
                           </View>
                         ) : (
-                          <Image style={[styles.vehicalInfoImages, { resizeMode: 'cover', borderBottomLeftRadius: 7, borderBottomRightRadius: 7 }]} source={{ uri: this.state.pathLicense }} />
+                          <Image style={[styles.vehicalInfoImages, {resizeMode: 'cover', borderBottomLeftRadius: 7, borderBottomRightRadius: 7}]} source={{uri: this.state.pathLicense}} />
                         )}
                     </View>
-                    <View style={[styles.overlay, { borderBottomRightRadius: 7 }]}>
-                      <TouchableOpacity style={{ padding: 7 }} onPress={() => { this.refs['setDriverLicense'].show(); }}>
-                        <Image style={[commonStyle.icons, { marginRight: 0 }]} source={require('../../../../../images/camera.png')} />
+                    <View style={[styles.overlay, {borderBottomRightRadius: 7}]}>
+                      <TouchableOpacity style={{padding: 7}} onPress={() => { this.refs['setDriverLicense'].show(); }}>
+                        <Image style={[commonStyle.icons, {marginRight: 0}]} source={require('../../../../../images/camera.png')} />
                       </TouchableOpacity>
                       <ActionSheet
                         ref='setDriverLicense'
@@ -601,7 +601,7 @@ class EditProfileView extends Component {
                       />
                     </View>
                   </View>
-                  <View style={[styles.documentInnerContainer, { width: '85%', backgroundColor: 'powderblue' }]}>
+                  <View style={[styles.documentInnerContainer, {width: '85%', backgroundColor: 'powderblue'}]}>
                     <View style={[styles.documentHeaderWrapper, {}]}>
                       <Text style={[styles.headline, {}]}>Proof of Insurance</Text>
                     </View>
@@ -609,15 +609,15 @@ class EditProfileView extends Component {
                       {this.state.pathLicense === ''
                         ? (
                           <View style={styles.documentOverlayText}>
-                            <Text style={[styles.headline, { fontSize: 18, color: colors.colorWhite }]}>Documents Approval Pending</Text>
+                            <Text style={[styles.headline, {fontSize: 18, color: colors.colorWhite}]}>Documents Approval Pending</Text>
                           </View>
                         ) : (
-                          <Image style={[styles.vehicalInfoImages, { resizeMode: 'cover', borderBottomLeftRadius: 7, borderBottomRightRadius: 7 }]} source={{ uri: this.state.pathInsurance }} />
+                          <Image style={[styles.vehicalInfoImages, {resizeMode: 'cover', borderBottomLeftRadius: 7, borderBottomRightRadius: 7}]} source={{uri: this.state.pathInsurance}} />
                         )}
                     </View>
-                    <View style={[styles.overlay, { borderBottomRightRadius: 7 }]}>
-                      <TouchableOpacity style={{ padding: 7 }} onPress={() => { this.refs['setProofInsurance'].show(); }}>
-                        <Image style={[commonStyle.icons, { marginRight: 0 }]} source={require('../../../../../images/camera.png')} />
+                    <View style={[styles.overlay, {borderBottomRightRadius: 7}]}>
+                      <TouchableOpacity style={{padding: 7}} onPress={() => { this.refs['setProofInsurance'].show(); }}>
+                        <Image style={[commonStyle.icons, {marginRight: 0}]} source={require('../../../../../images/camera.png')} />
                       </TouchableOpacity>
                       <ActionSheet
                         ref='setProofInsurance'
@@ -628,7 +628,7 @@ class EditProfileView extends Component {
                       />
                     </View>
                   </View>
-                  <View style={[styles.documentInnerContainer, { width: '85%', backgroundColor: 'steelblue' }]}>
+                  <View style={[styles.documentInnerContainer, {width: '85%', backgroundColor: 'steelblue'}]}>
                     <View style={[styles.documentHeaderWrapper, {}]}>
                       <Text style={[styles.headline, {}]}>Vehical Registration</Text>
                     </View>
@@ -636,15 +636,15 @@ class EditProfileView extends Component {
                       {this.state.pathLicense === ''
                         ? (
                           <View style={styles.documentOverlayText}>
-                            <Text style={[styles.headline, { fontSize: 18, color: colors.colorWhite }]}>Documents Approval Pending</Text>
+                            <Text style={[styles.headline, {fontSize: 18, color: colors.colorWhite}]}>Documents Approval Pending</Text>
                           </View>
                         ) : (
-                          <Image style={[styles.vehicalInfoImages, { resizeMode: 'cover', borderBottomLeftRadius: 7, borderBottomRightRadius: 7 }]} source={{ uri: this.state.pathRegistration }} />
+                          <Image style={[styles.vehicalInfoImages, {resizeMode: 'cover', borderBottomLeftRadius: 7, borderBottomRightRadius: 7}]} source={{uri: this.state.pathRegistration}} />
                         )}
                     </View>
-                    <View style={[styles.overlay, { borderBottomRightRadius: 7 }]}>
-                      <TouchableOpacity style={{ padding: 7 }} onPress={() => { this.refs['setVehicalRegistration'].show(); }}>
-                        <Image style={[commonStyle.icons, { marginRight: 0 }]} source={require('../../../../../images/camera.png')} />
+                    <View style={[styles.overlay, {borderBottomRightRadius: 7}]}>
+                      <TouchableOpacity style={{padding: 7}} onPress={() => { this.refs['setVehicalRegistration'].show(); }}>
+                        <Image style={[commonStyle.icons, {marginRight: 0}]} source={require('../../../../../images/camera.png')} />
                       </TouchableOpacity>
                       <ActionSheet
                         ref='setVehicalRegistration'
@@ -749,7 +749,7 @@ class EditProfileView extends Component {
             </View>
           </View>
           <TouchableOpacity
-            style={[commonStyle.bgbutton, commonStyle.bgColorDarkPink, { marginTop: 50 }]}
+            style={[commonStyle.bgbutton, commonStyle.bgColorDarkPink, {marginTop: 50}]}
             onPress={() => {
               this.validateInput();
             }}
@@ -976,7 +976,7 @@ const styles = StyleSheet.create({
     height: 80,
     backgroundColor: 'transparent',
     marginBottom: 10,
-    borderRadius: 7,
+    borderRadius: 7
     // borderWidth: 1,
     // borderLeftWidth: 0,
     // borderBottomWidth: 0,
@@ -992,13 +992,13 @@ const styles = StyleSheet.create({
     backgroundColor: '#F02948',
     height: '30%',
     borderTopLeftRadius: 7,
-    borderTopRightRadius: 7,
+    borderTopRightRadius: 7
   },
   documentImageWrapper: {
     position: 'relative',
     height: '70%',
     borderBottomLeftRadius: 7,
-    borderBottomRightRadius: 7,
+    borderBottomRightRadius: 7
   },
   documentOverlayText: {
     position: 'absolute',
